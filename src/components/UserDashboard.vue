@@ -5,7 +5,7 @@
       <!-- Cards Section -->
       <a-row gutter="16">
         <a-col :span="6">
-          <a-card  style="height: 200px;  background-image: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1));">
+          <a-card  style="height: 200px;  background: linear-gradient(to right, #159957, #155799);">
             <!-- Content for Card 1 -->
             <p><UserAddOutlined/></p>
           </a-card>
