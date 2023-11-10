@@ -17,7 +17,7 @@
         </div>
         <div class="linkSign">
           Already Sign up?
-          <RouterLink active-class="active" to="/login">
+          <RouterLink active-class="active" to="/">
             <span class="nav-text">Sign In</span>
           </RouterLink>
         </div>

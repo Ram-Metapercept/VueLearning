@@ -19,7 +19,7 @@
             <div class="link1">
               <p>
                 Don't have an account?
-                <RouterLink active-class="active" to="/">
+                <RouterLink active-class="active" to="/register">
                   <span class="nav-text">Sign Up</span>
                 </RouterLink>
               </p>

@@ -8,6 +8,8 @@
       style="position: fixed; height: 100vh; z-index: 1000"
     >
       <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
+        <img src="../assets/Metapercept_footer_logo2.802c8d964b6891227ab6385ff4394264.svg" alt="" :style="{ width: '100px', height: 'auto',margin:'25px',display:'block' }">
+
         <RouterLink active-class="active" to="/dashboard">
           <a-menu-item key="1" class="alignment1">
             <div class="space">
@@ -33,7 +35,7 @@
             </div>
           </a-menu-item>
         </RouterLink>
-        <RouterLink active-class="active" to="#">
+        <RouterLink active-class="active" to="/">
           <a-menu-item key="4" class="alignment1">
             <user-outlined />
             <span class="nav-text">Profile</span>
@@ -93,11 +95,17 @@ const selectedKeys = ref<string[]>(["1"]);
 .site-layout-background {
   background: #fff;
 }
-
+.material-symbols-outlined{
+  font-size: 14px;
+}
 .space {
   display: flex;
   align-items: center;
   gap: 5px;
+  color: #D7E4EC!important;
+}
+.space:hover{
+  color: white!important; 
 }
 .alignment1 {
   display: flex;
@@ -121,5 +129,16 @@ const selectedKeys = ref<string[]>(["1"]);
     margin-left:0px  !important;
   }
   
+}
+
+:where(.css-dev-only-do-not-override-185kyl0).ant-layout .ant-layout-sider-zero-width-trigger {
+  position: absolute;
+  top: 22px !important;
+  background-color: #1890ff;
+  border:1px solid red
+}
+
+a.active router-link-exact-active{
+  background-color:transparent !important;
 }
 </style>

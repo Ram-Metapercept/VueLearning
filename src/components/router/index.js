@@ -9,19 +9,19 @@ const router = createRouter({
     routes: [
         {
             path: "/",
+            name: 'LoginForm',
+            component: LoginForm
+        },
+        {
+            path: "/register",
             name: 'SignUpForm',
             component: SignUpForm
         },
         // {
-        //     path: "/register",
-        //     name: 'SignUpForm',
-        //     component: SignUpForm
-        // },
-        {
-            path: "/login",
-            name: 'LoginForm',
-            component: LoginForm
-        },  
+        //     path: "/login",
+        //     name: 'LoginForm',
+        //     component: LoginForm
+        // },  
           {
             path: "/dashboard",
             name: 'Demo',
