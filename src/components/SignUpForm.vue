@@ -3,6 +3,7 @@
     <div class="part1">
       <form @submit.prevent="submitForm">
         <h2>Welcome To DITA EXPRESSO TECHNOLOGY</h2>
+     
         <div class="form-group">
           <label for="username">Username</label>
           <input type="text" id="username" v-model="user.username" required />
@@ -21,9 +22,7 @@
             <span class="nav-text">Sign In</span>
           </RouterLink>
         </div>
-        <!-- <form>
-         
-        </form> -->
+  
         <div id="buttonCenter">
           <button :style="{ borderRadius: '5px' }" type="submit">Sign Up</button>
         </div>
@@ -47,16 +46,16 @@ export default {
   },
   methods: {
     submitForm() {
-      // Handle form submission here
+    
       console.log("Form submitted with data:", this.user);
-      // You can send the form data to a server or perform client-side validation here
+      
     },
   },
 };
 </script>
 
 <style scoped>
-/* Add your CSS styles here */
+
 form {
   max-width: 50%;
   margin: 0 auto;
@@ -155,3 +154,11 @@ margin:0 auto !important;
   display: flex;
 }
 </style>
+
+
+
+
+
+	This is the sign up page, it uses the dashboard layout in: 
+	"./layouts/Default.vue" .
+ -->

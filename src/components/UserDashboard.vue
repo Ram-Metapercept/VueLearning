@@ -5,68 +5,90 @@
       ><span>Dashboard</span>
     </h1>
     <div class="combine">
-<div class="combine1">
-    <!-- Cards Section -->
-    <a-row gutter="16" class="flexBox">
-      <a-col :span="6" class="card">
-        <center>
-          <h1 style="font-size: 54px; margin: 0 auto; padding: 10px">84K</h1>
-          <h2 style="font-size: 16px; margin: 0 auto">56%</h2>
-        </center>
-      </a-col>
+      <div class="combine1">
+        <a-row gutter="16" class="flexBox">
+          <a-col :span="6" class="card">
+            <center>
+              <h1 style="font-size: 54px; margin: 0 auto; padding: 10px">
+                84K
+              </h1>
+              <h2 style="font-size: 16px; margin: 0 auto">56%</h2>
+            </center>
+          </a-col>
 
-      <a-col :span="6" class="card">
-        <center>
-          <h1 style="font-size: 54px; margin: 0 auto; padding: 10px">34K</h1>
-          <h2 style="font-size: 16px; margin: 0 auto">38%</h2>
-        </center>
-      </a-col>
-      <a-col :span="6" class="card">
-        <center>
-          <h1 style="font-size: 54px; margin: 0 auto; padding: 10px">46K</h1>
-          <h2 style="font-size: 16px; margin: 0 auto">10%</h2>
-        </center>
-      </a-col>
-      <a-col :span="6" class="card">
-        <center>
-          <h1 style="font-size: 54px; margin: 0 auto; padding: 10px">46K</h1>
-          <h2 style="font-size: 16px; margin: 0 auto">10%</h2>
-        </center>
-      </a-col>
-    </a-row>
+          <a-col :span="6" class="card">
+            <center>
+              <h1 style="font-size: 54px; margin: 0 auto; padding: 10px">
+                34K
+              </h1>
+              <h2 style="font-size: 16px; margin: 0 auto">38%</h2>
+            </center>
+          </a-col>
+          <a-col :span="6" class="card">
+            <center>
+              <h1 style="font-size: 54px; margin: 0 auto; padding: 10px">
+                46K
+              </h1>
+              <h2 style="font-size: 16px; margin: 0 auto">10%</h2>
+            </center>
+          </a-col>
+          <a-col :span="6" class="card">
+            <center>
+              <h1 style="font-size: 54px; margin: 0 auto; padding: 10px">
+                46K
+              </h1>
+              <h2 style="font-size: 16px; margin: 0 auto">10%</h2>
+            </center>
+          </a-col>
+        </a-row>
 
-    <div class="wrapper">
-      <Bar :data="data" :options="options" id="barchart" />
-    </div>
- 
-</div>
-<div class="combine2">
-
-    <div class="pieSpacing">
-      <div class="block1">
-        <DonutChart></DonutChart>
+        <div class="wrapper">
+          <div class="strip1">
+            <span>Growth Summary</span>
+            <span class="material-symbols-outlined"> settings </span>
+          </div>
+          <Bar :data="data" :options="options" id="barchart" />
+        </div>
       </div>
-      <div class="block2" id="p2">
-        <Chart1
-        width="100%"
-        height="500"
-        id="chart2"
-        type="line"
-        title="# of previous Votes"
-        :labels =' ["Red", "Blue", "Yellow", "Green", "Purple", "Orange", "Pink", "Turquoise"]'
-
-        :data='[3, 14, 8, 25, 17, 10,40,56,78,34,23,45,98,67]'
-        :border-color="'rgba(153, 102, 255, 1)'"
-        border-width="2"
-        fill="false"
-      ></Chart1>
-      
-    </div>
-    
+      <div class="combine2">
+        <div class="pieSpacing">
+          <div class="block1">
+            <DonutChart></DonutChart>
+          </div>
+          <div class="block2" id="p2">
+            <Chart1
+              width="100%"
+              height="500"
+              id="chart2"
+              type="line"
+              title="# of previous Votes"
+              :labels="[
+                'Red',
+                'Blue',
+                'Yellow',
+                'Green',
+                'Purple',
+                'Orange',
+                'Pink',
+                'Turquoise',
+              ]"
+              :data="[3, 14, 8, 25, 17, 10, 40, 56, 78, 34, 23, 45, 98, 67]"
+              :border-color="'rgba(153, 102, 255, 1)'"
+              border-width="2"
+              fill="false"
+            ></Chart1>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-</div>
+  <div class="fraction">
+    <div class="fraction1">
+   
+    </div>
+    <div class="fraction2"></div>
+    <div class="fraction3"></div>
+  </div>
 
   <div
     :style="{
@@ -95,8 +117,10 @@ import {
 } from "chart.js";
 import PieChart from "./PieChart.vue";
 import Table from "./Table.vue";
-import Chart1 from './Chart1.vue';
+import Chart1 from "./Chart1.vue";
 import DonutChart from "./DonutChart.vue";
+import StackChart from "./StackChart.vue";
+// import {BIconArrowsAngleExpand} from 'bootstrap-vue';
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -108,6 +132,9 @@ ChartJS.register(
 
 export default {
   components: {
+    // BIconArrowsAngleExpand,
+    // StackChart,
+
     Chart1,
     DonutChart,
     Table,
@@ -147,7 +174,27 @@ export default {
   },
 };
 </script>
+
 <style scoped>
+
+.fraction{
+  display:flex;
+  justify-content: space-between;
+  width:100%;
+  height:400px;
+  gap:20px;
+  margin-top: 20px;
+
+}
+.fraction1,.fraction2,.fraction3{
+background-color: #fff;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+border-radius: 4px;
+  width:100%;
+
+
+}
 .alignment1 {
   display: flex;
   align-items: center;
@@ -156,6 +203,7 @@ export default {
   margin-left: -0px;
   width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center !important;
 
   background-color: white;
@@ -166,7 +214,19 @@ export default {
 a-card {
   margin-bottom: 20px;
 }
-
+.wrapper .strip1 {
+  border-radius: 4px;
+  display: flex;
+  width: 100%;
+  height: 50px;
+  font-weight: 700;
+  background-color: lightgrey;
+  justify-content: space-between !important;
+  padding: 0 30px !important;
+}
+.wrapper .strip1 span{
+margin-top: 15px !important;
+}
 #barchart {
   width: 100% !important;
   margin: 0px;
@@ -175,7 +235,8 @@ a-card {
 
   border-radius: 5px;
 }
-.block1 , .block2{
+.block1,
+.block2 {
   margin: 10px !important;
   background-color: white !important;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -204,13 +265,11 @@ a-card {
   }
 }
 @media only screen and (max-width: 991px) {
-  .combine{
-    width:100%;
+  .combine {
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-  
-  
   }
   .wrapper {
     display: block;
@@ -225,7 +284,12 @@ a-card {
 
     border-radius: 5px;
   }
+  .wrapper .strip1 {
 
+    width: 100%;
+    background-color: blue !important;
+    border: 1px solid red !important;
+  }
   .pieSpacing {
     margin-left: 20px;
     display: flex;
@@ -234,19 +298,17 @@ a-card {
     gap: 10px;
   }
 }
-.combine{
-  width:100%;
+
+.combine {
+  width: 100%;
   display: flex;
   justify-content: space-between;
-
-
 }
-.combine1{
-  width:70%;
+.combine1 {
+  width: 70%;
 }
-.combine2{
-
-  width:30%;
+.combine2 {
+  width: 30%;
 }
 .flexBox {
   display: flex;
@@ -293,7 +355,7 @@ a-card {
   .pieSpacing {
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    
+
     display: flex;
     flex-direction: row !important;
     justify-content: center; /* Stack blocks vertically on small screens */
@@ -306,8 +368,4 @@ a-card {
     align-items: center;
   }
 }
-
-
-
-
 </style>
