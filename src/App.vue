@@ -1,23 +1,17 @@
 <template>
-  <v-app>
-    <v-main>
-      <HelloWorld/>
-    </v-main>
-  </v-app>
+  <div>
+    <!-- <SignUpForm /> -->
+    <router-view /> <!-- Use lowercase 'router-view' -->
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { defineComponent } from "vue";
+import SignUpForm from "./components/SignUpForm.vue";
 
-export default {
-  name: 'App',
-
+export default defineComponent({
   components: {
-    HelloWorld,
+    SignUpForm, 
   },
-
-  data: () => ({
-    //
-  }),
-}
+});
 </script>

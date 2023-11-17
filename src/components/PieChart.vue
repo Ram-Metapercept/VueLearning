@@ -50,25 +50,25 @@ export default {
       },
     };
   },
-  computed: {
-    isDesktop() {
-      return window.innerWidth > 480; // Adjust the breakpoint as needed
-    },
-    mobileChartWidth() {
-      return 250; // Adjust the width as needed
-    },
-    mobileChartHeight() {
-      return 250; // Adjust the height as needed
-    },
-  },
+  // computed: {
+  //   isDesktop() {
+  //     return window.innerWidth > 480; // Adjust the breakpoint as needed
+  //   },
+  //   mobileChartWidth() {
+  //     return 250; // Adjust the width as needed
+  //   },
+  //   mobileChartHeight() {
+  //     return 250; // Adjust the height as needed
+  //   },
+  // },
 };
-</script>
+</script> 
 
   
 
 
-<!-- 
-   <template>
+
+   <!-- <template>
     <Pie :data="data" :options="options" />
   </template>
   

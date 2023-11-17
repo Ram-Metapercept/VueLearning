@@ -6,8 +6,8 @@
     </h1>
     <div class="combine">
       <div class="combine1">
-        <a-row gutter="16" class="flexBox">
-          <a-col :span="6" class="card">
+        <a-row gutter="6" class="flexBox">
+          <!-- <a-col :span="6" class="card">
             <center>
               <h1 style="font-size: 54px; margin: 0 auto; padding: 10px">
                 84K
@@ -39,7 +39,24 @@
               </h1>
               <h2 style="font-size: 16px; margin: 0 auto">10%</h2>
             </center>
-          </a-col>
+          </a-col> -->
+          <!-- <div id="app"> -->
+            <a-col :span="6" class="card" >
+              <Card1 title="Total Users" value="1000" label="Users" icon="users" />
+            </a-col>
+            <a-col :span="6"  class="card" >
+              <Card1 title="Revenue" value="$50K" label="USD" icon="dollar-sign" />
+            </a-col>
+            <a-col :span="6"  class="card" >
+              <Card1 title="Active Subscribers" value="500" label="Subscribers" icon="bell" />
+            </a-col>
+            
+            <a-col :span="6"  class="card" >
+              <Card1 title="Monthly Visits" value="10K" label="Visits" icon="chart-line" />
+            </a-col>
+            
+            
+          <!-- </div> -->
         </a-row>
 
         <div class="wrapper">
@@ -48,6 +65,39 @@
             <span class="material-symbols-outlined"> settings </span>
           </div>
           <Bar :data="data" :options="options" id="barchart" />
+        </div>
+        <div class="t">
+          <div class="t1">
+            <span>Average $3456</span>
+
+            <div class="parent">
+              <div class="div2">
+                <span class="material-symbols-outlined"> moving </span> 43%
+              </div>
+            </div>
+            <div></div>
+          </div>
+
+          <div class="t3">
+            <span>Current Growth $2345</span>
+
+            <div class="parent">
+              <div class="div2">
+                <span class="material-symbols-outlined"> moving </span> 56%
+              </div>
+            </div>
+            <div></div>
+          </div>
+          <div class="t3">
+            <span>Previous Growth $8976</span>
+
+            <div class="parent">
+              <div class="div2">
+                <span class="material-symbols-outlined"> moving </span> 45%
+              </div>
+            </div>
+            <div></div>
+          </div>
         </div>
       </div>
       <div class="combine2">
@@ -58,7 +108,7 @@
           <div class="block2" id="p2">
             <Chart1
               width="100%"
-              height="500"
+              height="600"
               id="chart2"
               type="line"
               title="# of previous Votes"
@@ -83,11 +133,17 @@
     </div>
   </div>
   <div class="fraction">
-    <div class="fraction1">
    
+    <div class="fraction1">
+      <div class="scroll">
+      <!-- <Card1 title="Total Users" value="1000" label="Users" icon="fas fa-users" /> -->
+      <!-- <Card1 title="Total Users" value="1000" label="Users" icon="users" /> -->
+      <!-- <RadarGraph :data="chartData" :labels="chartLabels" title="Performance"></RadarGraph> -->
+      <activity-card :activities="activityData" />
     </div>
-    <div class="fraction2"></div>
-    <div class="fraction3"></div>
+    </div>
+    <div class="fraction2"><CardGraph/></div>
+    <div class="fraction3"><PieChart></PieChart></div>
   </div>
 
   <div
@@ -115,12 +171,15 @@ import {
   CategoryScale,
   LinearScale,
 } from "chart.js";
+import ActivityCard from './ActivityCard.vue';
 import PieChart from "./PieChart.vue";
 import Table from "./Table.vue";
 import Chart1 from "./Chart1.vue";
 import DonutChart from "./DonutChart.vue";
-import StackChart from "./StackChart.vue";
+import Card1 from "./Card1.vue";
+
 // import {BIconArrowsAngleExpand} from 'bootstrap-vue';
+import CardGraph from "./CardGraph.vue";
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -134,7 +193,11 @@ export default {
   components: {
     // BIconArrowsAngleExpand,
     // StackChart,
+    // RadarGraph,
 
+    CardGraph,
+    ActivityCard,
+    Card1,
     Chart1,
     DonutChart,
     Table,
@@ -143,6 +206,19 @@ export default {
   },
   data() {
     return {
+      activityData: [
+        { date: '2020-04-28T00:07:00', details: 'Responded to need “Volunteer Activities”' },
+         { date: '2020-04-28T00:07:00', details: 'Responded to need “Volunteer Activities”' },
+        { date: '2020-04-21T20:01:00', details: 'Added an interest “Volunteer Activities”' },
+        { date: '2020-04-17T09:23:00', details: 'Joined the group “Boardsmanship Forum”' },
+        { date: '2020-04-11T17:10:00', details: 'Responded to need “In-Kind Opportunity”' },
+        // { date: '2020-04-07T12:47:00', details: 'Created need “Volunteer Activities”' },
+        // { date: '2020-04-05T15:09:00', details: 'Attending the event “Some New Event”' },
+        // { date: '2020-04-02T00:07:00', details: 'Responded to need “In-Kind Opportunity”' },
+     
+      ],
+      chartData: [65, 59, 90, 81, 56, 55, 40],
+      chartLabels: ['Math', 'English', 'History', 'Science', 'Art', 'Physical Education', 'Music'],
       data: {
         labels: [
           "Jan",
@@ -176,24 +252,45 @@ export default {
 </script>
 
 <style scoped>
-
-.fraction{
-  display:flex;
+.fraction {
+  display: flex;
   justify-content: space-between;
-  width:100%;
-  height:400px;
-  gap:20px;
+  width: 100%;
+  height: 400px;
+  gap: 20px;
   margin-top: 20px;
-
 }
-.fraction1,.fraction2,.fraction3{
-background-color: #fff;
-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+.fraction1 {
+  overflow-y: auto;
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: transparent transparent; /* For Firefox */
+}
 
-border-radius: 4px;
-  width:100%;
+/* For Webkit browsers like Chrome and Safari */
+.fraction1::-webkit-scrollbar {
+  width: 6px; /* Adjust the width as needed */
+}
 
 
+.Highlight{
+  font-weight: bold;
+  margin-top: 30px !important;
+  margin:20px;
+}
+.fraction1,
+.fraction2,
+.fraction3 {
+
+  background-color: #fff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  border-radius: 4px;
+  width: 60%;
+}
+
+.parent {
+  display: flex;
+  flex-direction: row;
 }
 .alignment1 {
   display: flex;
@@ -224,8 +321,8 @@ a-card {
   justify-content: space-between !important;
   padding: 0 30px !important;
 }
-.wrapper .strip1 span{
-margin-top: 15px !important;
+.wrapper .strip1 span {
+  margin-top: 15px !important;
 }
 #barchart {
   width: 100% !important;
@@ -285,9 +382,8 @@ margin-top: 15px !important;
     border-radius: 5px;
   }
   .wrapper .strip1 {
-
     width: 100%;
-    background-color: blue !important;
+  
     border: 1px solid red !important;
   }
   .pieSpacing {
@@ -298,13 +394,18 @@ margin-top: 15px !important;
     gap: 10px;
   }
 }
-
+#app {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}
 .combine {
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
 .combine1 {
+
   width: 70%;
 }
 .combine2 {
@@ -318,8 +419,7 @@ margin-top: 15px !important;
   padding: 0px 10px !important;
 }
 .card {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+ 
   border-radius: 4px;
   height: 150px;
   margin: 10px;
@@ -368,4 +468,42 @@ margin-top: 15px !important;
     align-items: center;
   }
 }
+.t {
+  border-top: 1px solid lightgray;
+  background-color: #fff;
+  height: 70px;
+  display: flex;
+  justify-content: space-around !important;
+}
+.t1,
+.t2,
+.t3 {
+  display: flex;
+  flex-direction: column;
+
+  padding: 15px;
+}
+
+
+
+
+
+
+.t1 span,
+.t2 span,
+.t3 span {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+
+.div2 span {
+  font-size: 16px;
+  font-weight: normal;
+  color: #666;
+}
+
+
+
 </style>
