@@ -1,19 +1,20 @@
 <template>
   <div class="section">
-    <div class="section1">
+    <div class="section1"><center><img src="../../assets/Login.png" alt=""/></center> </div>
+    <div class="section2">
       <Center>
         <h1>Welcome Back</h1>
       </Center>
       <div class="login-form">
         <h2>Login</h2>
-        <form @submit.prevent="login">
+        <form >
           <div class="form-group">
             <label for="username">Username</label>
-            <input type="text" id="username" v-model="username" />
+            <input type="text" id="username"/>
           </div>
           <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" id="password" v-model="password" />
+            <input type="password" id="password"  />
           </div>
           <div class="options">
             <div class="link1">
@@ -25,7 +26,7 @@
               </p>
             </div>
             <div class="link2">
-              <a href="#" @click="showSignUp">Forget password </a>
+              <a href="#" @click="">Forget password </a>
             </div>
           </div>
           <RouterLink to="/dashboard">
@@ -34,13 +35,12 @@
         </form>
       </div>
     </div>
-    <div class="section2"></div>
+
   </div>
 </template>
 
 <script lang="ts">
 import { reactive, computed } from "vue";
-import { UserOutlined, LockOutlined } from "@ant-design/icons-vue";
 import { RouterLink } from "vue-router";
 interface FormState {
   username: string;
@@ -66,13 +66,12 @@ const disabled = computed(() => {
 
 <style scoped>
 .login-form {
-  max-width: 60%;
+
+  max-width: 50%;
   margin: 0 auto;
   padding: 20px;
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
   border-radius: 5px;
-  /* text-align: center; */
-  background-color: #f9f9f9;
+  background-color: #E5E4E2;
 }
 
 .section {
@@ -80,23 +79,31 @@ const disabled = computed(() => {
 
   align-items: center;
 
-  justify-content: space-between;
+  justify-content: space-evenly !important;
   height: 100vh;
-}
-
-.section1 {
-  width: 40%;
 }
 
 .section2 {
-  width: 60%;
-  height: 100vh;
-  background-position: center;
-  background-size: cover;
-
-  background-image: url("https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&q=80&w=1472&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  width: 50%;
+  /* background-color: blue; */
 }
 
+.section1 {
+  width: 50% !important;
+  /* width: 100%; */
+  /* background-color: red; */
+  align-items: center !important;
+display: flex !important;
+
+justify-content: flex-end !important;
+
+  background-position: center;
+  background-size: cover;
+}
+.section1 img{
+width:120%;
+  margin: 0 auto;
+}
 h2 {
   font-size: 24px;
   margin-bottom: 20px;
@@ -150,12 +157,18 @@ a {
     .login-form{
         max-width: 80%;
     }
-  .section1 {
+  .section2 {
     width: 100% !important;
   }
-  .section2 {
-    display: none;
-  }
+.section{
+  display: flex;
+  flex-direction: column;
+}
+.section1{
+  display: flex;
+
+justify-content: center;
+}
   form {
     max-width: 100%;
     margin: 20px !important;
@@ -163,13 +176,15 @@ a {
 }
 
 @media only screen and (max-width: 912px) and (min-width: 768px) {
-  .section1 {
+  .section{
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .section2 {
     width: 80%;
     margin: 0 auto !important;
   }
-  .section2 {
-    display: none;
-  }
+  
   form {
     max-width: 100%;
   }

@@ -1,4 +1,4 @@
-<!-- ActivityCard.vue -->
+
 <template>
   <h1 class="activity-heading">Recent Activity Feeds</h1>
     <div class="activity-card">
@@ -73,17 +73,16 @@
   }
   
   .activity-date {
-    color: #007bff; /* Blue color for the date */
+    color: #007bff; 
     font-weight: bold;
   }
   
   .activity-details {
-    color: #495057; /* Dark gray color for the details */
+    color: #495057;
     margin-top: 8px;
   }
   
   .activity-heading{
-    margin-left: 40px;
     font-weight: bold;
     margin-top: 20px;
     display: flex;

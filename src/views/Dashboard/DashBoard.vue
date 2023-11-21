@@ -8,8 +8,12 @@
       style="position: fixed; height: 100vh; z-index: 1000"
     >
       <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
-        <img src="../assets/Metapercept_footer_logo2.802c8d964b6891227ab6385ff4394264.svg" alt="" :style="{ width: '100px', height: 'auto',margin:'25px',display:'block' }">
-
+      <div class="imageClass">
+        <img src="../../assets/users-vector-icon-png_260862-removebg-preview.png" alt="" :style="{ width: '70px', height: '70px',margin:'25px',display:'block',border:'50%' }">
+      <span>
+        Ram
+      </span>
+      </div>
         <RouterLink active-class="active" to="/dashboard">
           <a-menu-item key="1" class="alignment1">
             <div class="space">
@@ -37,16 +41,90 @@
         </RouterLink>
         <RouterLink active-class="active" to="/">
           <a-menu-item key="4" class="alignment1">
+            <div class="space">
             <user-outlined />
             <span class="nav-text">Profile</span>
+            </div>
+          </a-menu-item>
+        </RouterLink>
+        <RouterLink active-class="active" to="#">
+          <a-menu-item key="5" class="alignment1">
+            <div class="space">
+              <span class="material-symbols-outlined">
+chat_bubble
+</span>
+            <span class="nav-text">Messages</span>
+            </div>
+          </a-menu-item>
+        </RouterLink>
+        <RouterLink active-class="active" to="#">
+          <a-menu-item key="6" class="alignment1">
+            <div class="space">
+              <span class="material-symbols-outlined">
+bar_chart
+</span>
+            <span class="nav-text">Analytics</span>
+            </div>
+          </a-menu-item>
+        </RouterLink>
+        <RouterLink active-class="active" to="#">
+          <a-menu-item key="7" class="alignment1">
+            <div class="space">
+              <span class="material-symbols-outlined">
+folder
+</span>
+            <span class="nav-text">File Manager</span>
+            </div>
+          </a-menu-item>
+        </RouterLink>
+        <RouterLink active-class="active" to="#">
+          <a-menu-item key="8" class="alignment1">
+            <div class="space">
+              <span class="material-symbols-outlined">
+shopping_cart
+</span>
+            <span class="nav-text">Order</span>
+            </div>
+          </a-menu-item>
+        </RouterLink>
+        <RouterLink active-class="active" to="#">
+          <a-menu-item key="9" class="alignment1">
+            <div class="space">
+              <span class="material-symbols-outlined">
+favorite
+</span>
+            <span class="nav-text">Saved</span>
+            </div>
+          </a-menu-item>
+        </RouterLink>
+        <RouterLink active-class="active" to="#">
+          <a-menu-item key="10" class="alignment1">
+            <div class="space">
+              <setting-filled />
+            <span class="nav-text">Setting</span>
+            </div>
           </a-menu-item>
         </RouterLink>
       </a-menu>
     </a-layout-sider>
     <a-layout class="layOutMargin">
       <!-- Adjust the margin to your desired width -->
-      <a-layout-header :style="{ background: '#fff', padding: 0 }" />
+     
+      <a-layout-header :style="{ background: '#fff', padding: 0 ,marginLeft: '120px'}">
+
+        <div class="Searchbar">
+  <SearchBar/>
+  
+  <span class="material-symbols-outlined" style="font-size: 34px;">
+    notifications
+  </span>
+</div>
+
+
+ 
+</a-layout-header>
       <a-layout-content :style="{ marginLeft: '150px' }" class="navigation1">
+      
         <UserDashBoard />
       </a-layout-content>
       <a-layout-footer style="text-align: center" class="footer">
@@ -56,13 +134,13 @@
   </a-layout>
 </template>
 <script lang="ts" setup>
+import SearchBar from "../Dashboard/components/dashboard/SearchBar.vue"
 import { ref } from "vue";
-import UserDashBoard from "../components/UserDashboard.vue";
+import UserDashBoard from "../Dashboard/components/dashboard/UserDashboard.vue";
 import {
   UserOutlined,
-  VideoCameraOutlined,
-  LoginOutlined,
-  HomeOutlined,
+  SettingFilled,
+
 } from "@ant-design/icons-vue";
 import { RouterLink } from "vue-router";
 
@@ -141,4 +219,25 @@ const selectedKeys = ref<string[]>(["1"]);
 a.active router-link-exact-active{
   background-color:transparent !important;
 }
+
+.imageClass{
+  margin-bottom: 40px;
+  flex-direction: column !important;
+  margin-left: 40px;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width:80px;
+  height:80px;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.Searchbar{
+display: flex;
+justify-content: flex-end;
+  margin: 15px 30px 0px 30px;
+}
+
+
 </style>

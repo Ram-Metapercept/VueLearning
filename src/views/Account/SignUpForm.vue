@@ -1,6 +1,9 @@
 <template>
   <div class="part">
     <div class="part1">
+      <img src="../../assets/Sign.png" alt="" />
+    </div>
+    <div class="part2">
       <form @submit.prevent="submitForm">
         <h2>Welcome To DITA EXPRESSO TECHNOLOGY</h2>
         <div class="form-group">
@@ -13,7 +16,12 @@
         </div>
         <div class="form-group">
           <label for="password">Password</label>
-          <input type="password" id="password" v-model="user.password" required />
+          <input
+            type="password"
+            id="password"
+            v-model="user.password"
+            required
+          />
         </div>
         <div class="linkSign">
           Already Sign up?
@@ -25,11 +33,12 @@
          
         </form> -->
         <div id="buttonCenter">
-          <button :style="{ borderRadius: '5px' }" type="submit">Sign Up</button>
+          <button :style="{ borderRadius: '5px' }" type="submit">
+            Sign Up
+          </button>
         </div>
       </form>
     </div>
-    <div class="part2"></div>
   </div>
 </template>
 
@@ -47,23 +56,22 @@ export default {
   },
   methods: {
     submitForm() {
-      // Handle form submission here
+
       console.log("Form submitted with data:", this.user);
-      // You can send the form data to a server or perform client-side validation here
+     
     },
   },
 };
 </script>
 
 <style scoped>
-/* Add your CSS styles here */
+
 form {
   max-width: 50%;
   margin: 0 auto;
 
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
   padding: 20px;
-  background-color: #f9f9f9;
+  background-color: #e5e4e2;
   border-radius: 5px;
 }
 
@@ -106,29 +114,44 @@ button:hover {
 
   align-items: center;
 
-  justify-content: space-between;
+  justify-content: center !important;
   height: 100vh;
 }
 
 .part1 {
   width: 50%;
+  align-items: center !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+
+  background-position: center;
+  background-size: cover;
+}
+.part1 img{
+
+  
+    width:60%;
+  
 }
 
 .part2 {
-  width: 50%;
-  height: 100vh;
-  background-position: center;
-  background-size: cover;
-
-  background-image: url("https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&q=80&w=1472&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  width: 50% !important;
 }
 
-@media only screen and (max-width: 991px)  {
-  .part1 {
-    width: 100%;
-  }
+@media only screen and (max-width: 991px) {
+    .part1 img{
+      width:120%;
+  margin: 0 auto;
+
+    }
   .part2 {
-    display: none;
+    width: 100% !important;
+  }
+  .part{
+    display: flex;
+    flex-direction: column;
+  
+  justify-content: flex-end;
   }
   form {
     max-width: 100%;
@@ -136,20 +159,18 @@ button:hover {
   }
 }
 
-@media only screen and (max-width: 912px) and (min-width: 768px)  {
-    .part1 {
-      width: 80%;
-margin:0 auto !important;
- 
-    }
-    .part2 {
-      display: none;
-    }
-    form {
-      max-width: 100%;
-    
-    }
+@media only screen and (max-width: 912px) and (min-width: 768px) {
+  .part2 {
+    width: 80%;
+    /* margin: 0 auto !important; */
   }
+  .part1 {
+    display: none;
+  }
+  form {
+    max-width: 100%;
+  }
+}
 
 .linkSign {
   display: flex;

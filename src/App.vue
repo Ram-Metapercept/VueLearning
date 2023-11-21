@@ -7,7 +7,7 @@
 
 <script>
 import { defineComponent } from "vue";
-import SignUpForm from "./components/SignUpForm.vue";
+import SignUpForm from "./views/Account/SignUpForm.vue";
 
 export default defineComponent({
   components: {
