@@ -30,14 +30,15 @@ export default {
 <style scoped>
 .statistics-card {
   background-color: #ffffff;
-  max-height: 180px;
-  min-height:180px;
+  max-height: 200px;
+  min-height:200px;
+min-width: 150px !important;
   position: relative;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.3s;
-  margin-bottom: 20px !important;
+ 
 }
 
 

@@ -119,13 +119,10 @@ favorite
     notifications
   </span>
 </div>
-
-
- 
 </a-layout-header>
       <a-layout-content :style="{ marginLeft: '150px' }" class="navigation1">
       
-        <UserDashBoard />
+<UserDashBoard />
       </a-layout-content>
       <a-layout-footer style="text-align: center" class="footer">
         <p>&copy; 2023 Metapercet. All rights reserved.</p>
@@ -163,7 +160,7 @@ const selectedKeys = ref<string[]>(["1"]);
 .footer {
   background-color: #1890ff;
   color: #fff;
-  text-align: center;
+  text-align: center !important;
   padding: 10px 0;
 }
 .site-layout-sub-header-background {
@@ -199,6 +196,7 @@ const selectedKeys = ref<string[]>(["1"]);
 
 @media only screen and (max-width: 912px) {
   .navigation1 {
+    height:auto !important;
     margin-left: 0px !important;
     display: flex;
     flex-direction: column !important;
@@ -221,6 +219,7 @@ a.active router-link-exact-active{
 }
 
 .imageClass{
+  margin-top: 20px;
   margin-bottom: 40px;
   flex-direction: column !important;
   margin-left: 40px;

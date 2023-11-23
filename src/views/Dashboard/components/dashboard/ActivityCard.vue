@@ -2,9 +2,7 @@
 <template>
   <h1 class="activity-heading">Recent Activity Feeds</h1>
     <div class="activity-card">
-
-
-      <div v-for="activity in activities" :key="activity.date" class="activity-item">
+       <div v-for="activity in activities" :key="activity.date" class="activity-item">
         <i class="fa-solid fa-check"></i>
         <div class="activity-date">{{ formatDate(activity.date) }}</div>
         <div class="activity-details">{{ activity.details }}</div>
@@ -34,7 +32,7 @@
   .activity-card:not(span) {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /*align-items: center;*/
     position: relative;
   }
   .activity-card > span {
@@ -44,6 +42,7 @@
 
   
   .activity-item {
+
     padding: 15px;
     width: 300px;
     transition: transform 0.3s ease;
@@ -85,9 +84,21 @@
   .activity-heading{
     font-weight: bold;
     margin-top: 20px;
+
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
+ 
+
   }
+
+  @media screen and (max-width: 600px) {
+
+    .activity-card{
+      height: 100% !important;
+      width:100%;
+    }
+    
+
+  }
+
   </style>
   

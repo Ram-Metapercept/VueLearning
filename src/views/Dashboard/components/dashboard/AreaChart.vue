@@ -41,7 +41,8 @@
         ],
         chartOptions: {
           chart: {
-            width: 500,
+            width: 360,
+            // height: 500,
             type: 'area',
           },
           labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
@@ -50,7 +51,8 @@
               breakpoint: 480,
               options: {
                 chart: {
-                  width: 200,
+                  width: 300,
+                  height:300,
                 },
                 legend: {
                   position: 'bottom',
@@ -69,9 +71,11 @@
         return 250; 
       },
       mobileChartHeight() {
-        return 250; 
+        return 280; 
       },
     },
   };
   </script>
-  
+
+
+
