@@ -91,7 +91,6 @@
   }
 
   @media screen and (max-width: 600px) {
-
     .activity-card{
       height: 100% !important;
       width:100%;

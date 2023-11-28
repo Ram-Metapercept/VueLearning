@@ -1,18 +1,15 @@
 <template>
     <div class="earnings-card">
       <div class="chart-container">
-        <canvas ref="weeklyChart" width="200" height="200"></canvas>
-        <div class="chart-label">
+        <canvas ref="weeklyChart"></canvas>
+        <!-- <div class="chart-label">
         <strong>Weekly Earnings</strong>
         <p>$2,523</p>
-    </div>
+    </div> -->
       </div>
       <div class="chart-container">
-        <canvas ref="monthlyChart" width="200" height="200"></canvas>
-        <div class="chart-label">
-        <strong >Monthly Earnings</strong>
-        <p>$11,235</p>
-    </div>
+        <canvas ref="monthlyChart"></canvas>
+  
       </div>
 
     </div>
@@ -32,30 +29,30 @@ import Chart from 'chart.js/auto';
         new Chart(weeklyCtx, {
           type: 'doughnut',
           data: {
-            labels: ['Earnings', 'Revenue'],
+            labels: ['weekly Earnings', 'weekly Revenue'],
             datasets: [{
               data: [4523, 10000 - 4523], // Adjust the remaining value accordingly
               backgroundColor: ['#36A2EB', 'cyan'],
             }],
           },
           options: {
-      cutout: '80%', 
+      cutout: '60%', 
     },
         });
   
-        // Monthly Earnings Chart
+
         const monthlyCtx = this.$refs.monthlyChart.getContext('2d');
         new Chart(monthlyCtx, {
           type: 'doughnut',
           data: {
-            labels: ['Earnings', 'Revenue'],
+            labels: ['Monthly Earnings', 'Revenue'],
             datasets: [{
-              data: [21235, 30000 - 21235], 
+              data: [21235, (30000 - 21235)], 
               backgroundColor: ['#FF6384', 'cyan'],
             }],
           },
           options: {
-      cutout: '80%', // Adjust the cutout value for thickness
+      cutout: '60%', 
     },
         });
       },
@@ -64,17 +61,12 @@ import Chart from 'chart.js/auto';
   </script>
   
   <style scoped>
-  .earnings-card {
-    display: flex;
-    flex-direction: column;
 
-
-  }
   
   .chart-container {
 
     display: flex;
-    flex-direction: row;
+    flex-direction: column !important;
     margin-top: 30px;
     max-width: 25vh;
     max-height: 25vh;
@@ -85,7 +77,7 @@ import Chart from 'chart.js/auto';
   
   .chart-label {
     font-size: 20px;
-    margin-top:3rem;
+    margin-top:1rem;
   }
   
   .earnings-text {
@@ -93,12 +85,23 @@ import Chart from 'chart.js/auto';
   }
   @media (max-width: 1200px) {
 .earnings-card {
-    max-width: 200px !important;
+
     flex-direction: column !important;
         display: block;
         margin: auto;
         justify-content: center !important;
       }
   }
+
+
+  @media (max-width: 1050px) {
+    .earnings-card {
+ 
+        flex-direction: row !important;
+            display: block;
+            margin: auto;
+            justify-content: center !important;
+          }
+      }
   </style>
   

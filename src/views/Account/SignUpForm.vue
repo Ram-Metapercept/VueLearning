@@ -140,8 +140,8 @@ button:hover {
 
 @media only screen and (max-width: 991px) {
     .part1 img{
-      width:120%;
-  margin: 0 auto;
+      width:100%;
+      margin: 0 auto;
 
     }
   .part2 {
@@ -165,7 +165,8 @@ button:hover {
     /* margin: 0 auto !important; */
   }
   .part1 {
-    display: none;
+  display: flex;
+    justify-content: center !important;
   }
   form {
     max-width: 100%;

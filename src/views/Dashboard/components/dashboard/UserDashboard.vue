@@ -26,6 +26,8 @@
             />
           </a-col>
         </a-row>
+      </div>
+      <div class="combine2">
         <div class="wrapper">
           <div class="strip1">
             <span>Growth Summary</span>
@@ -45,7 +47,7 @@
               <div></div>
             </div>
 
-            <div class="t3">
+            <div class="t2">
               <span>Current Growth $2345</span>
 
               <div class="parent">
@@ -69,26 +71,29 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="combine2">
-        <!-- <div class="pieSpacing"> -->
-          <div class="block1">
-           
-            <DonutChart></DonutChart>
-           
+        <div class="block2">
+          <div class="earningReport">
+            <EarningReport />
           </div>
-          <div class="block2" id="p2">
-            <EarningReport/>
-  
-
         </div>
-   
- 
-   
       </div>
     </div>
   </div>
-  <div class="cardAndTable"></div>
+
+  <CardStats />
+
+  <div
+    class="tableClass"
+    :style="{
+      padding: '24px',
+      background: '#fff',
+
+      marginTop: '20px',
+      overflowX: 'scroll',
+    }"
+  >
+    <Table />
+  </div>
   <div class="fraction">
     <div class="fraction1">
       <div>
@@ -102,39 +107,27 @@
     </div>
     <div class="fraction3">
       <PieChart></PieChart>
+      <!-- <div class="progress1">
+        <h2>Incresed Profit</h2>
+      <a-progress type="dashboard" :percent="35" />
+    </div>
+    <div class="progress2">
+      <h2>Incresed Revenue</h2>
+      <a-progress type="dashboard" :percent="75" />
+    </div> -->
     </div>
   </div>
-  <div
-    :style="{
-      padding: '24px',
-      background: '#fff',
- 
-      marginTop: '20px',
-      overflowX: 'scroll',
-    }"
-  >
-    <Table />
-    <div class="pagination-bar">
-    <a-pagination v-model:current="current" :total="50" show-less-items />
-</div>
-  </div>
 </template>
- 
+
 <script>
 import { Bar } from "vue-chartjs";
-import * as chartConfig from "../dashboard/chartConfig"
-import PolarChart from "./PolarChart.vue";
+
 import {
   Chart as ChartJS,
   RadialLinearScale,
   PointElement,
   LineElement,
   Filler,
-
-
-
-
-
   Title,
   Tooltip,
   Legend,
@@ -147,21 +140,18 @@ import ActivityCard from "./ActivityCard.vue";
 import PieChart from "./PieChart.vue";
 import Table from "./Table.vue";
 import DonutChart from "./DonutChart.vue";
-import { Radar } from 'vue-chartjs'
+import { Radar } from "vue-chartjs";
 import Card from "./Card.vue";
 import LineChart from "../dashboard/LineChart.vue";
 import AreaChart from "./AreaChart.vue";
-import { ref } from 'vue';
+import { ref } from "vue";
+import CardStats from "../dashboard/Cardstates.vue";
 const current = ref(2);
 ChartJS.register(
-    RadialLinearScale,
+  RadialLinearScale,
   PointElement,
   LineElement,
   Filler,
- 
-
-
-
 
   CategoryScale,
   LinearScale,
@@ -172,7 +162,7 @@ ChartJS.register(
 );
 export default {
   components: {
-    PolarChart,
+    CardStats,
     EarningReport,
     Radar,
     Table,
@@ -186,8 +176,6 @@ export default {
   },
   data() {
     return {
-      
-   
       series: {
         monthDataSeries1: {
           dates: ["2023-01-01", "2023-01-02", "2023-01-03"],
@@ -233,7 +221,7 @@ export default {
         },
       ],
       chartData: [10, 20, 30, 40, 50], // Replace with your data
-      chartLabels: ['Label 1', 'Label 2', 'Label 3', 'Label 4', 'Label 5'],
+      chartLabels: ["Label 1", "Label 2", "Label 3", "Label 4", "Label 5"],
 
       data: {
         labels: [
@@ -263,7 +251,6 @@ export default {
         responsive: true,
       },
 
- 
       chartOptions: {
         responsive: true,
         maintainAspectRatio: false,
@@ -274,7 +261,10 @@ export default {
 </script>
 
 <style scoped>
-
+.totalChart {
+  display: flex !important;
+  flex-direction: row !important;
+}
 
 .fraction {
   display: flex;
@@ -283,7 +273,10 @@ export default {
   gap: 20px;
   margin: 10px 0px !important;
 }
-
+.combine2 {
+  display: flex;
+  flex-direction: row;
+}
 .fraction1 {
   padding-left: 40px;
   min-height: 100%;
@@ -294,23 +287,21 @@ export default {
   scrollbar-color: transparent transparent;
 }
 .fraction2 {
-    min-height: 100% !important;
+  min-height: 100% !important;
 }
 
 /* For Webkit browsers like Chrome and Safari */
 .fraction1::-webkit-scrollbar {
   width: 6px;
 }
-.cardAndTable{
+.cardAndTable {
   display: flex;
   flex-direction: column;
 }
 .areaChart {
-   max-width: 500px !important;
-  display: flex !important;
-  justify-content: center;
-  align-items: center;
+  display: block;
   margin-top: 30px !important;
+  height: 100% !important;
 }
 
 .Highlight {
@@ -323,9 +314,9 @@ export default {
 .fraction2,
 .fraction3 {
   background-color: #fff;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
-  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+  min-height: 100% !important;
+  border-radius: 8px !important;
   width: 33% !important;
 }
 
@@ -335,21 +326,36 @@ export default {
 }
 
 .wrapper {
-    margin-top: 20px !important;
+  box-sizing: border-box;
+  margin-top: 20px !important;
   margin-left: -0px;
 
   display: flex;
   flex-direction: column;
 
   background-color: white;
-
+  width: 70%;
   border-radius: 5px;
 }
 
 a-card {
   margin-bottom: 20px;
 }
+.earningReport {
+  display: flex;
+  justify-content: center;
+}
 
+.block2 {
+  width: 30%;
+  display: block !important;
+  margin: 0 auto;
+  margin: 20px 0px 0px 10px !important;
+  padding: 5px !important;
+  background-color: white !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 4px !important;
+}
 .wrapper .strip1 {
   border-radius: 4px;
   display: flex;
@@ -375,23 +381,6 @@ a-card {
   border-radius: 5px;
 }
 
-.block1,
-.block2,.block3 {
-
- 
-  margin: 10px 0px 0px 10px !important;
-   padding: 5px!important;
-  background-color: white !important;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 4px !important;
-}
-
-.block2{
-
-  height:63vh !important;
-}
-
-
 #app {
   display: flex;
   justify-content: space-around;
@@ -401,24 +390,18 @@ a-card {
 .combine {
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
 }
 
 .flexBox {
-    margin-top: 10px !important;
+  margin-top: 10px !important;
   display: flex;
   justify-content: space-around;
-   gap:10px !important;
+  gap: 10px !important;
   width: 100%;
-
-
 }
-.combine2{
 
-display: flex !important;
-flex-direction: column !important;
-
-}
 .card {
   border-radius: 4px;
   flex: 1;
@@ -431,16 +414,15 @@ flex-direction: column !important;
   }
 
   @media (max-width: 768px) {
-    max-width: calc(50% - 20px)!important;
+    max-width: calc(50% - 20px) !important;
     /* 2 cards per row on small screens */
   }
 
   @media (max-width: 480px) {
-    max-width:  calc(100%) !important;
+    max-width: calc(100%) !important;
     /* 1 card per row on extra small screens */
   }
 }
-
 
 .t {
   border-top: 1px solid lightgray;
@@ -460,9 +442,9 @@ flex-direction: column !important;
   padding: 15px;
 }
 .chart-container {
-    width: 100% !important;
-    height: 60% !important; 
-  }
+  width: 100% !important;
+  height: 60% !important;
+}
 .t1 span,
 .t2 span,
 .t3 span {
@@ -477,129 +459,136 @@ flex-direction: column !important;
   color: #666;
 }
 
-.pagination-bar{
-    display:flex;
-    justify-content: flex-end !important;
-
+.pagination-bar {
+  display: flex;
+  justify-content: flex-end !important;
 }
-@media only screen and (min-width: 1100px ) and (max-width:1280px ){
-  .block2{
- 
-    height:52vh !important;
+@media only screen and (min-width: 1100px) and (max-width: 1280px) {
+  .block2 {
+    height: 100%;
   }
-  .block2{
-
+  .block2 {
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
-    
-    }
+  }
 }
 
-@media only screen and (min-width: 1100px ) {
+@media only screen and (min-width: 1100px) {
+  #barchart {
+    width: 90% !important;
+    margin: 0px;
+    padding: 20px !important;
+    background-color: white;
 
-  
-   #barchart {
-      width: 90% !important;
-      margin: 0px;
-      padding: 20px !important;
-      background-color: white;
-  
-      border-radius: 5px;
-    }
+    border-radius: 5px;
   }
-  @media only screen and (max-width: 1100px) {
-    .combine{
-      display:flex;
-      flex-direction: column;
-    }
-
-    .fraction1,
-    .fraction2,
-    .fraction3 {
-      background-color: #fff;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    
-      border-radius: 4px;
-      width: 100% !important;
-    }
-  }
-  
-  @media only screen and (max-width: 991px) {
-
- 
-      .fraction {
-          display: flex;
-          justify-content: space-between;
-          flex-direction: column !important;
-        
-          width: 100%;
-          height: 400px;
-          gap: 20px;
-          margin-top: 10px;
-        }
-    .part1 {
-      width: 100%;
-    }
-  
-    .part2 {
-      display: none;
-    }
-  
-    form {
-      max-width: 100%;
-      margin: 20px !important;
-    }
-    .combine {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-  
-    .wrapper {
-      display: block;
-      flex-direction: row;
-      flex-wrap: wrap;
-    }
-  
-    #barchart {
-      width: 100% !important;
-      margin: 0px;
-      padding: 0px !important;
-      background-color: white;
-  
-      border-radius: 5px;
-    }
-  
-    .wrapper .strip1 {
-      width: 100%;
-    }
-  
-    .pieSpacing {
-      margin-left: 20px;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
+}
+@media only screen and (max-width: 1100px) {
+  .combine {
+    display: flex;
+    flex-direction: column;
   }
 
-  @media screen and (max-width: 767px) {
-    .fraction {
-        display: flex;
-        justify-content: space-between;
-        flex-direction:column !important;
-      
-        width: 100%;
-        height: 400px;
-        gap: 20px;
-        margin-top: 10px;
-      }
-    .chart-container {
-        width: 100%;
-        height: 60%; 
-      }
+  .fraction1,
+  .fraction2,
+  .fraction3 {
+    background-color: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    border-radius: 4px;
+    width: 100% !important;
+  }
+}
+.fraction3 {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  align-items: center;
+}
+@media only screen and (max-width: 991px) {
+  .wrapper {
+    width: 100%;
+  }
+  .block2 {
+    width: 100%;
+  }
+  .combine2 {
+    flex-direction: column;
+  }
+
+  .fraction {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column !important;
+
+    width: 100%;
+    height: 400px;
+    gap: 20px;
+    margin-top: 10px;
+  }
+  .part1 {
+    width: 100%;
+  }
+
+  .part2 {
+    display: none;
+  }
+
+  form {
+    max-width: 100%;
+    margin: 20px !important;
+  }
+  .combine {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .wrapper {
+    display: block;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  #barchart {
+    width: 100% !important;
+    margin: 0px;
+    padding: 0px !important;
+    background-color: white;
+
+    border-radius: 5px;
+  }
+
+  .wrapper .strip1 {
+    width: 100%;
+  }
+
+  .pieSpacing {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .fraction {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column !important;
+
+    width: 100%;
+    height: 400px;
+    gap: 20px;
+    margin-top: 10px;
+  }
+  .chart-container {
+    width: 100%;
+    height: 60%;
+  }
   .parent {
     display: flex;
     flex-direction: row !important;
@@ -614,54 +603,50 @@ flex-direction: column !important;
   }
 }
 
-
-
 @media screen and (max-width: 600px) {
-    .fraction1,
-    .fraction2,
-    .fraction3 {
-      background-color: #fff;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      display: flex;
-      flex-direction: column;
-      border-radius: 4px;
-      width: 100% !important;
-      height: 100% !important;
-    }
-    .t1,
-    .t2,
-    .t3 {
-      display: flex;
-      flex-direction: row;
-  
-      padding: 12px;
-    }
-  
-    .t1 span,
-    .t2 span,
-    .t3 span {
-      font-size: 10px !important;
-      font-weight: bold;
-      color: black !important;
-    }
-  
-    .flexBox {
-      display: flex;
-      flex-wrap: wrap;
-      width: 100% !important;
-  
-      justify-content: space-around;
-      padding: 0px 10px !important;
-    }
-  
-    @media (max-width: 1200px) {
- 
-        }
-  
-    #apexcharts4aiykc58 {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+  .fraction1,
+  .fraction2,
+  .fraction3 {
+    background-color: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+    width: 100% !important;
+    height: 100% !important;
   }
+  .t1,
+  .t2,
+  .t3 {
+    display: flex;
+
+    padding: 12px;
+  }
+
+  .t1 span,
+  .t2 span,
+  .t3 span {
+    font-size: 10px !important;
+    font-weight: bold;
+    color: black !important;
+  }
+
+  .flexBox {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100% !important;
+
+    justify-content: space-around;
+    padding: 0px 10px !important;
+  }
+
+  @media (max-width: 1200px) {
+  }
+
+  #apexcharts4aiykc58 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
 </style>

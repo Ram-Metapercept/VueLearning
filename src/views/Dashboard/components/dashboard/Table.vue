@@ -1,177 +1,167 @@
 <template>
-    <DataTable :rows="data"></DataTable>
-   
-</template>
-<script setup lang="ts">
-    import { DataTable } from "@jobinsjp/vue3-datatable"
-    import "@jobinsjp/vue3-datatable/dist/style.css"
+    <a-button class="editable-add-btn" style="margin-bottom: 8px" @click="handleAdd">Add</a-button>
+    <a-table bordered :data-source="dataSource" :columns="columns">
+      <template #bodyCell="{ column, text, record }">
+        <template v-if="column.dataIndex === 'name'">
+          <div class="editable-cell">
+            <div v-if="editableData[record.key]" class="editable-cell-input-wrapper">
+              <a-input v-model:value="editableData[record.key].name" @pressEnter="save(record.key)" />
+              <check-outlined class="editable-cell-icon-check" @click="save(record.key)" />
+            </div>
+            <div v-else class="editable-cell-text-wrapper">
+              {{ text || ' ' }}
+              <edit-outlined class="editable-cell-icon" @click="edit(record.key)" />
+            </div>
+          </div>
+        </template>
+        <template v-else-if="column.dataIndex === 'operation'">
+          <a-popconfirm
+            v-if="dataSource.length"
+            title="Sure to delete?"
+            @confirm="onDelete(record.key)"
+          >
+            <a>Delete</a>
+          </a-popconfirm>
+        </template>
+      </template>
+    </a-table>
+  </template>
+  <script lang="ts" setup>
+  import { computed, reactive, ref } from 'vue';
+  import type { Ref, UnwrapRef } from 'vue';
+  import { CheckOutlined, EditOutlined } from '@ant-design/icons-vue';
+  import { cloneDeep } from 'lodash-es';
+  
+  interface DataItem {
+    key: string;
+    name: string;
+    age: number;
+    address: string;
+  }
+  
+  const columns = [
+    {
+      title: 'Name',
+      dataIndex: 'name',
+      width: '30%',
+    },
+    {
+      title: 'Age',
+      dataIndex: 'age',
+    },
+    {
+      title: 'Address',
+      dataIndex: 'address',
+    },
+    {
+      title: 'Operation',
+      dataIndex: 'operation',
+    },
+  ];
+  const dataSource: Ref<DataItem[]> = ref([
+  {
+    key: '0',
+    name: 'Edward King 0',
+    age: 32,
+    address: 'London, Park Lane no. 0',
+  },
+  {
+    key: '1',
+    name: 'Edward King 1',
+    age: 32,
+    address: 'London, Park Lane no. 1',
+  },
+  {
+    key: '2',
+    name: 'Edward King 2',
+    age: 32,
+    address: 'London, Park Lane no. 2',
+  },
+  // Add more data items here with unique keys
+  {
+    key: '3',
+    name: 'Edward King 3',
+    age: 32,
+    address: 'London, Park Lane no. 3',
+  },
+  {
+    key: '4',
+    name: 'Edward King 4',
+    age: 32,
+    address: 'London, Park Lane no. 4',
+  },
+  {
+    key: '5',
+    name: 'Edward King 5',
+    age: 32,
+    address: 'London, Park Lane no. 5',
+  }
+]);
 
-    const data = [
-    {
-        "id": 1,
-        "first_name": "Misti",
-        "last_name": "Strase",
-        "email": "mstrase0@instagram.com",
-        "gender": "Non-binary",
-        "ip_address": "151.38.32.165",
-    },
-    {
-        "id": 2,
-        "first_name": "Valentina",
-        "last_name": "Bonas",
-        "email": "vbonas1@is.gd",
-        "gender": "Agender",
-        "ip_address": "103.10.225.246",
-    },
-    {
-        "id": 3,
-        "first_name": "John",
-        "last_name": "Doe",
-        "email": "johndoe@example.com",
-        "gender": "Male",
-        "ip_address": "192.168.1.1",
-    },
-    {
-        "id": 4,
-        "first_name": "Jane",
-        "last_name": "Smith",
-        "email": "janesmith@gmail.com",
-        "gender": "Female",
-        "ip_address": "10.0.0.1",
-    },
-    {
-        "id": 5,
-        "first_name": "Samuel",
-        "last_name": "Johnson",
-        "email": "samuel.j@example.org",
-        "gender": "Male",
-        "ip_address": "172.16.0.1",
-    },
-    {
-        "id": 6,
-        "first_name": "Ella",
-        "last_name": "Wilson",
-        "email": "ellawilson@yahoo.com",
-        "gender": "Female",
-        "ip_address": "192.168.2.1",
-    },
-    {
-        "id": 7,
-        "first_name": "Alex",
-        "last_name": "Martin",
-        "email": "alex.martin@mail.com",
-        "gender": "Non-binary",
-        "ip_address": "203.0.113.1",
-    },
-    {
-        "id": 8,
-        "first_name": "Samantha",
-        "last_name": "Davis",
-        "email": "samantha.d@example.net",
-        "gender": "Female",
-        "ip_address": "172.16.0.2",
-    },
-    {
-        "id": 9,
-        "first_name": "William",
-        "last_name": "Johnson",
-        "email": "william.j@example.com",
-        "gender": "Male",
-        "ip_address": "192.168.3.1",
-    },
-    {
-        "id": 10,
-        "first_name": "Olivia",
-        "last_name": "Smith",
-        "email": "oliviasmith@mail.net",
-        "gender": "Female",
-        "ip_address": "10.0.0.2",
-    },
-    // {
-    //     "id": 11,
-    //     "first_name": "Liam",
-    //     "last_name": "Wilson",
-    //     "email": "liam.w@example.org",
-    //     "gender": "Male",
-    //     "ip_address": "192.168.4.1",
-    // },
-    // {
-    //     "id": 12,
-    //     "first_name": "Sophia",
-    //     "last_name": "Brown",
-    //     "email": "sophia.brown@example.com",
-    //     "gender": "Female",
-    //     "ip_address": "203.0.113.2",
-    // },
-    // {
-    //     "id": 13,
-    //     "first_name": "Noah",
-    //     "last_name": "Miller",
-    //     "email": "noah.m@example.net",
-    //     "gender": "Male",
-    //     "ip_address": "172.16.0.3",
-    // },
-    // {
-    //     "id": 14,
-    //     "first_name": "Ava",
-    //     "last_name": "Wilson",
-    //     "email": "ava.w@mail.com",
-    //     "gender": "Female",
-    //     "ip_address": "192.168.5.1",
-    // },
-    // {
-    //     "id": 15,
-    //     "first_name": "Jackson",
-    //     "last_name": "Davis",
-    //     "email": "jackson.d@example.org",
-    //     "gender": "Male",
-    //     "ip_address": "192.168.6.1",
-    // },
-    // {
-    //     "id": 16,
-    //     "first_name": "Emma",
-    //     "last_name": "Johnson",
-    //     "email": "emma.j@example.com",
-    //     "gender": "Female",
-    //     "ip_address": "203.0.113.3",
-    // },
-    // {
-    //     "id": 17,
-    //     "first_name": "Liam",
-    //     "last_name": "Taylor",
-    //     "email": "liam.t@example.net",
-    //     "gender": "Male",
-    //     "ip_address": "172.16.0.4",
-    // },
-    // {
-    //     "id": 18,
-    //     "first_name": "Isabella",
-    //     "last_name": "Brown",
-    //     "email": "isabella.b@mail.com",
-    //     "gender": "Female",
-    //     "ip_address": "192.168.7.1",
-    // },
-    // {
-    //     "id": 19,
-    //     "first_name": "Mason",
-    //     "last_name": "Wilson",
-    //     "email": "mason.w@example.org",
-    //     "gender": "Male",
-    //     "ip_address": "192.168.8.1",
-    // },
-    // {
-    //     "id": 20,
-    //     "first_name": "Olivia",
-    //     "last_name": "Johnson",
-    //     "email": "olivia.j@example.com",
-    //     "gender": "Female",
-    //     "ip_address": "203.0.113.4",
-    // },
-];
-</script>
-
-
-<style>
-
-
-</style>
+  const count = computed(() => dataSource.value.length + 1);
+  const editableData: UnwrapRef<Record<string, DataItem>> = reactive({});
+  
+  const edit = (key: string) => {
+    editableData[key] = cloneDeep(dataSource.value.filter(item => key === item.key)[0]);
+  };
+  const save = (key: string) => {
+    Object.assign(dataSource.value.filter(item => key === item.key)[0], editableData[key]);
+    delete editableData[key];
+  };
+  
+  const onDelete = (key: string) => {
+    dataSource.value = dataSource.value.filter(item => item.key !== key);
+  };
+  const handleAdd = () => {
+    const newData = {
+      key: `${count.value}`,
+      name: `Edward King ${count.value}`,
+      age: 32,
+      address: `London, Park Lane no. ${count.value}`,
+    };
+    dataSource.value.push(newData);
+  };
+  </script>
+  <style lang="less" scoped>
+  .editable-cell {
+    position: relative;
+    .editable-cell-input-wrapper,
+    .editable-cell-text-wrapper {
+      padding-right: 24px;
+    }
+  
+    .editable-cell-text-wrapper {
+      padding: 5px 24px 5px 5px;
+    }
+  
+    .editable-cell-icon,
+    .editable-cell-icon-check {
+      position: absolute;
+      right: 0;
+      width: 20px;
+      cursor: pointer;
+    }
+  
+    .editable-cell-icon {
+      margin-top: 4px;
+      display: none;
+    }
+  
+    .editable-cell-icon-check {
+      line-height: 28px;
+    }
+  
+    .editable-cell-icon:hover,
+    .editable-cell-icon-check:hover {
+      color: #108ee9;
+    }
+  
+    .editable-add-btn {
+      margin-bottom: 8px;
+    }
+  }
+  .editable-cell:hover .editable-cell-icon {
+    display: inline-block;
+  }
+  </style>
+  

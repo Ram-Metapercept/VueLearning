@@ -25,8 +25,8 @@
           }]
         },
         styleOptions: {
-          width: "100%",
-          height: "360px"
+          width: "80%",
+          height: "80%"
         }
       }
     }
