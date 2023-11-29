@@ -38,31 +38,46 @@
 
   </div>
 </template>
-
 <script lang="ts">
 import { reactive, computed } from "vue";
 import { RouterLink } from "vue-router";
+
 interface FormState {
   username: string;
   password: string;
   remember: boolean;
 }
-const formState = reactive<FormState>({
-  username: "",
-  password: "",
-  remember: true,
-});
-const onFinish = (values: any) => {
-  console.log("Success:", values);
-};
 
-const onFinishFailed = (errorInfo: any) => {
-  console.log("Failed:", errorInfo);
+export default {
+  name: 'LoginForm', // Add a name to your component
+  components: {
+    RouterLink,
+  },
+  data() {
+    return {
+      formState: reactive<FormState>({
+        username: "",
+        password: "",
+        remember: true,
+      }),
+    };
+  },
+  methods: {
+    onFinish(values: any) {
+      console.log("Success:", values);
+    },
+    onFinishFailed(errorInfo: any) {
+      console.log("Failed:", errorInfo);
+    },
+  },
+  computed: {
+    disabled() {
+      return !(this.formState.username && this.formState.password);
+    },
+  },
 };
-const disabled = computed(() => {
-  return !(formState.username && formState.password);
-});
 </script>
+
 
 <style scoped>
 .login-form {
