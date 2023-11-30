@@ -1,9 +1,9 @@
 <template>
-    <div style="background: #ececec; padding: 30px">
+    <div class="card-spacing">
       <a-row :gutter="[16, 16, 16, 16]">
         <a-col :span="24" :md="{ span: 12 }" :lg="{ span: 6 }">
           <a-card>
-            <a-statistic
+            <a-statistic class="title-on-card"
               title="Active Users"
               :value="14.28"
               :precision="2"
@@ -71,4 +71,20 @@
   <script lang="ts" setup>
     import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons-vue';
   </script>
-  
+  <style scoped>
+  .card-spacing{
+    padding:20px 0px 0px 0px !important;
+  }
+
+  @media (max-width: 768px) {
+    .title-on-card{
+ 
+      flex-direction: column;
+      display: flex;
+      justify-content: center !important;
+    }
+    .card-spacing{
+      padding:10px 0px 0px 0px !important;
+    }
+  }
+</style>

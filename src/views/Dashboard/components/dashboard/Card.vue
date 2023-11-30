@@ -34,17 +34,15 @@ export default {
   min-height:200px;
 min-width: 150px !important;
   position: relative;
-  border-radius: 10px;
+  border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  transition: transform 0.3s;
+
  
 }
 
 
-.statistics-card:hover {
-  transform: scale(1.05);
-}
+
 
 .header {
   background-color: #4caf50;
@@ -58,13 +56,14 @@ min-width: 150px !important;
 .header i {
   font-size: 24px;
   position: absolute;
-  top: 20px; 
+  top: 30px; 
   left: 50%;
   transform: translate(-50%, -50%);
 }
 .header h3 {
   font-size: 1.5em;
-  margin: 0;
+  margin: 20px 0px 0px 0px;
+
 }
 
 .content {

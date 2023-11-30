@@ -36,9 +36,12 @@
           <Bar :data="data" :options="options" id="barchart" />
           <div class="t">
             <div class="t1">
-              <span>Average $3456</span>
-
+              <span>Average Growth</span>
+              
               <div class="parent">
+                <div class="div1">
+                  $3468
+                </div>
                 <div class="div2">
                   <span class="material-symbols-outlined"> moving </span>
                   <span>49%</span>
@@ -48,9 +51,12 @@
             </div>
 
             <div class="t2">
-              <span>Current Growth $2345</span>
+              <span>Current Growth </span>
 
               <div class="parent">
+                <div class="div1">
+                  $2345
+                </div>
                 <div class="div2">
                   <span class="material-symbols-outlined"> moving </span>
                   <span>56%</span>
@@ -59,9 +65,12 @@
               <div></div>
             </div>
             <div class="t3">
-              <span>Previous Growth $8976</span>
+              <span>Previous Growth</span>
 
               <div class="parent">
+                <div class="div1">
+                  $8976
+                </div>
                 <div class="div2">
                   <span class="material-symbols-outlined"> moving </span>
                   <span>45%</span>
@@ -82,40 +91,26 @@
 
   <CardStats />
 
-  <div
-    class="tableClass"
-    :style="{
-      padding: '24px',
-      background: '#fff',
-
-      marginTop: '20px',
-      overflowX: 'scroll',
-    }"
-  >
-    <Table />
-  </div>
-  <div class="fraction">
-    <div class="fraction1">
-      <div>
-        <activity-card :activities="activityData" />
-      </div>
-    </div>
-    <div class="fraction2">
+  <div class="parent1">
+    <div class="child1"><activity-card :activities="activityData" /></div>
+    <div class="child2">
       <div class="areaChart">
         <AreaChart></AreaChart>
       </div>
     </div>
-    <div class="fraction3">
-      <PieChart></PieChart>
-      <!-- <div class="progress1">
-        <h2>Incresed Profit</h2>
-      <a-progress type="dashboard" :percent="35" />
-    </div>
-    <div class="progress2">
-      <h2>Incresed Revenue</h2>
-      <a-progress type="dashboard" :percent="75" />
-    </div> -->
-    </div>
+    <div class="child3"><PieChart></PieChart></div>
+  </div>
+
+  <div
+    class="tableClass"
+    :style="{
+
+      background: '#fff',
+      borderRadius: '8px',
+      overflowX: 'auto',
+    }"
+  >
+    <Table />
   </div>
 </template>
 
@@ -144,7 +139,7 @@ import { Radar } from "vue-chartjs";
 import Card from "./Card.vue";
 import LineChart from "../dashboard/LineChart.vue";
 import AreaChart from "./AreaChart.vue";
-import { ref } from "vue";
+import {ref} from "vue";
 import CardStats from "../dashboard/Cardstates.vue";
 const current = ref(2);
 ChartJS.register(
@@ -266,32 +261,36 @@ export default {
   flex-direction: row !important;
 }
 
-.fraction {
-  display: flex;
-  width: 100%;
-  height: 400px;
-  gap: 20px;
-  margin: 10px 0px !important;
-}
+
 .combine2 {
   display: flex;
   flex-direction: row;
 }
-.fraction1 {
+.parent1 {
+  margin: 20px 0px !important;
+  gap: 20px !important;
+  display: flex;
+  flex-direction: row;
+}
+.child1,
+.child2,
+.child3 {
+  background-color: #fff;
+  border-radius: 8px !important;
+  width: 100%;
+  height: 40vh;
+}
+.child1 {
   padding-left: 40px;
-  min-height: 100%;
+
   padding-bottom: 50px;
   flex-direction: column !important;
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: transparent transparent;
 }
-.fraction2 {
-  min-height: 100% !important;
-}
-
 /* For Webkit browsers like Chrome and Safari */
-.fraction1::-webkit-scrollbar {
+.child1::-webkit-scrollbar {
   width: 6px;
 }
 .cardAndTable {
@@ -310,18 +309,13 @@ export default {
   margin: 20px;
 }
 
-.fraction1,
-.fraction2,
-.fraction3 {
-  background-color: #fff;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
-  min-height: 100% !important;
-  border-radius: 8px !important;
-  width: 33% !important;
-}
+
 
 .parent {
   display: flex;
+  justify-content:flex-start;
+  align-items: center;
+  gap:5px !important;
   flex-direction: row !important;
 }
 
@@ -335,7 +329,7 @@ export default {
 
   background-color: white;
   width: 70%;
-  border-radius: 5px;
+  border-radius: 8px;
 }
 
 a-card {
@@ -343,32 +337,29 @@ a-card {
 }
 .earningReport {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .block2 {
   width: 30%;
   display: block !important;
   margin: 0 auto;
-  margin: 20px 0px 0px 10px !important;
+  margin: 20px 0px 0px 20px !important;
   padding: 5px !important;
   background-color: white !important;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 4px !important;
+  border-radius: 8px !important;
 }
 .wrapper .strip1 {
-  border-radius: 4px;
+  border-radius: 8px 8px 0px 0px;
   display: flex;
+  align-items: center !important;
   width: 100%;
   height: 50px;
   font-weight: 700;
   background-color: lightgrey;
   justify-content: space-between !important;
   padding: 0 30px !important;
-}
-
-.wrapper .strip1 span {
-  margin-top: 15px !important;
 }
 
 #barchart {
@@ -378,7 +369,7 @@ a-card {
 
   background-color: white;
 
-  border-radius: 5px;
+  border-radius: 8px;
 }
 
 #app {
@@ -395,26 +386,26 @@ a-card {
 }
 
 .flexBox {
-  margin-top: 10px !important;
+  margin-top: 20px !important;
   display: flex;
-  justify-content: space-around;
-  gap: 10px !important;
+  gap: 15px;
+
   width: 100%;
 }
 
 .card {
-  border-radius: 4px;
+  border-radius: 8px;
   flex: 1;
-  max-width: calc(25% - 20px) !important;
+  max-width: calc(25% - 10px) !important;
   /* 4 cards per row on large screens */
 
   @media (max-width: 1200px) {
-    max-width: calc(25% - 20px) !important;
+    max-width: calc(25% - 10px) !important;
     /* 3 cards per row on medium screens */
   }
 
   @media (max-width: 768px) {
-    max-width: calc(50% - 20px) !important;
+    max-width: calc(50%) !important;
     /* 2 cards per row on small screens */
   }
 
@@ -427,7 +418,7 @@ a-card {
 .t {
   border-top: 1px solid lightgray;
   background-color: #fff;
-
+  border-radius: 0px 0px 8px 8px;
   height: 70px;
   display: flex;
   justify-content: space-around !important;
@@ -481,7 +472,7 @@ a-card {
     padding: 20px !important;
     background-color: white;
 
-    border-radius: 5px;
+    border-radius: 8px;
   }
 }
 @media only screen and (max-width: 1100px) {
@@ -489,44 +480,24 @@ a-card {
     display: flex;
     flex-direction: column;
   }
-
-  .fraction1,
-  .fraction2,
-  .fraction3 {
-    background-color: #fff;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
-    border-radius: 4px;
-    width: 100% !important;
-  }
 }
-.fraction3 {
-  display: flex;
-  justify-content: space-around;
-  gap: 20px;
-  align-items: center;
+
+.tableClass {
+  margin-top: 20px !important;
+  overflow-x: auto !important;
 }
 @media only screen and (max-width: 991px) {
   .wrapper {
     width: 100%;
   }
   .block2 {
+    margin: 10px 0px 0px 0px !important;
     width: 100%;
   }
   .combine2 {
     flex-direction: column;
   }
 
-  .fraction {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column !important;
-
-    width: 100%;
-    height: 400px;
-    gap: 20px;
-    margin-top: 10px;
-  }
   .part1 {
     width: 100%;
   }
@@ -539,6 +510,8 @@ a-card {
     max-width: 100%;
     margin: 20px !important;
   }
+
+
   .combine {
     width: 100%;
     display: flex;
@@ -558,33 +531,24 @@ a-card {
     padding: 0px !important;
     background-color: white;
 
-    border-radius: 5px;
+    border-radius: 8px;
   }
 
   .wrapper .strip1 {
     width: 100%;
   }
-
-  .pieSpacing {
-    margin-left: 20px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
 }
 
 @media screen and (max-width: 767px) {
-  .fraction {
+  .parent1 {
     display: flex;
-    justify-content: space-between;
     flex-direction: column !important;
-
-    width: 100%;
-    height: 400px;
-    gap: 20px;
-    margin-top: 10px;
   }
+  .tableClass {
+    background: #fff !important;
+    overflow-x: auto !important;
+  }
+
   .chart-container {
     width: 100%;
     height: 60%;
@@ -596,26 +560,10 @@ a-card {
   .card {
     margin-bottom: 10px;
   }
-
-  .fraction {
-    display: flex !important;
-    flex-direction: column !important;
-  }
 }
 
 @media screen and (max-width: 600px) {
-  .fraction1,
-  .fraction2,
-  .fraction3 {
-    background-color: #fff;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    display: flex;
-    flex-direction: column;
-    border-radius: 4px;
-    width: 100% !important;
-    height: 100% !important;
-  }
-  .t1,
+.t1,
   .t2,
   .t3 {
     display: flex;
@@ -635,12 +583,9 @@ a-card {
     display: flex;
     flex-wrap: wrap;
     width: 100% !important;
-
+    gap: 10px;
     justify-content: space-around;
     padding: 0px 10px !important;
-  }
-
-  @media (max-width: 1200px) {
   }
 
   #apexcharts4aiykc58 {

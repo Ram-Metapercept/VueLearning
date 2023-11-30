@@ -2,14 +2,29 @@
     <div class="earnings-card">
       <div class="chart-container">
         <canvas ref="weeklyChart"></canvas>
-        <!-- <div class="chart-label">
+        <div class="chart-label">
+          <span>
         <strong>Weekly Earnings</strong>
         <p>$2,523</p>
-    </div> -->
+      </span>
+      <span>
+        <strong>Weekly Revenue</strong>
+        <p>$6,523</p>
+      </span>
+    </div>
       </div>
       <div class="chart-container">
         <canvas ref="monthlyChart"></canvas>
-  
+        <div class="chart-label">
+          <span>
+          <strong>Monthly Earnings</strong>
+          <p>$5,523</p>
+        </span>
+        <span>
+          <strong>Monthly Revenue</strong>
+          <p>$9,523</p>
+        </span>
+      </div>
       </div>
 
     </div>
@@ -66,7 +81,8 @@ import Chart from 'chart.js/auto';
   .chart-container {
 
     display: flex;
-    flex-direction: column !important;
+    align-items: center;
+justify-content: flex-start !important;
     margin-top: 30px;
     max-width: 25vh;
     max-height: 25vh;
@@ -76,6 +92,10 @@ import Chart from 'chart.js/auto';
  
   
   .chart-label {
+display: flex;
+justify-content: flex-end !important;
+flex-direction: column;
+
     font-size: 20px;
     margin-top:1rem;
   }
@@ -98,10 +118,25 @@ import Chart from 'chart.js/auto';
     .earnings-card {
  
         flex-direction: row !important;
-            display: block;
+            display: flex;
             margin: auto;
             justify-content: center !important;
           }
       }
+      @media (max-width: 768px) {
+        .chart-label {
+
+
+          font-size: 15px;
+          margin-top:1rem;
+        }
+        .earnings-card {
+     
+            flex-direction: column !important;
+                display: flex;
+      
+                justify-content: flex-start !important;
+              }
+          }
   </style>
   

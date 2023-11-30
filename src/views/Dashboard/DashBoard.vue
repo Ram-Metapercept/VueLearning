@@ -50,7 +50,9 @@
         <RouterLink active-class="active" to="/">
           <a-menu-item key="4" class="alignment1">
             <div class="space">
-              <user-outlined />
+              <span class="material-symbols-outlined" style="fontSize:20px">
+                person
+                </span>
               <span class="nav-text">Profile</span>
             </div>
           </a-menu-item>
@@ -98,7 +100,9 @@
         <RouterLink active-class="active" to="#">
           <a-menu-item key="10" class="alignment1">
             <div class="space">
-              <setting-filled />
+              <span class="material-symbols-outlined">
+                settings
+                </span>
               <span class="nav-text">Setting</span>
             </div>
           </a-menu-item>
@@ -117,7 +121,6 @@
           <span class="material-symbols-outlined" style="font-size: 34px">
             notifications
           </span>
-       
         </div>
       </a-layout-header>
       <a-layout-content :style="{ marginLeft: '150px' }" class="layout-content">
@@ -189,17 +192,7 @@ const selectedKeys = ref<string[]>(["1"]);
   margin-left: 80px !important;
 }
 
-@media only screen and (max-width: 912px) {
-  .layout-content {
-    height: auto !important;
-    margin-left: 0px !important;
-    display: flex;
-    flex-direction: column !important;
-  }
-  .layOutMargin {
-    margin-left: 0px !important;
-  }
-}
+
 
 a.active router-link-exact-active {
   background-color: transparent !important;
@@ -226,10 +219,11 @@ a.active router-link-exact-active {
 }
 @media only screen and (max-width: 912px) {
   .layout-content {
-    height: 100% !important;
+
     margin-left: 0 !important;
     display: flex;
     flex-direction: column !important;
+
   }
   .layOutMargin {
     margin-left: 0 !important;
