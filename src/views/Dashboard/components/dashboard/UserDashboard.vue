@@ -574,11 +574,17 @@ a-card {
   .t1 span,
   .t2 span,
   .t3 span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 10px !important;
     font-weight: bold;
     color: black !important;
   }
-
+.div2{
+  display: flex;
+  justify-content: center;
+}
   .flexBox {
     display: flex;
     flex-wrap: wrap;

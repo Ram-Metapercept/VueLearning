@@ -60,7 +60,7 @@ import Chart from 'chart.js/auto';
         new Chart(monthlyCtx, {
           type: 'doughnut',
           data: {
-            labels: ['Monthly Earnings', 'Revenue'],
+            labels: ['Monthly Earnings', 'Monthly Revenue'],
             datasets: [{
               data: [21235, (30000 - 21235)], 
               backgroundColor: ['#FF6384', 'cyan'],
