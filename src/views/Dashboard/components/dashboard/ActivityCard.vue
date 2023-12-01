@@ -1,6 +1,5 @@
 
 <template>
-  <h1 class="activity-heading">Recent Activity Feeds</h1>
     <div class="activity-card">
        <div v-for="activity in activities" :key="activity.date" class="activity-item">
         <i class="fa-solid fa-check"></i>
@@ -77,8 +76,13 @@
   }
   
   .activity-details {
+
+    white-space:wrap;
+    word-break: break-all;
+    text-overflow: ellipsis;
     color: #495057;
     margin-top: 8px;
+
   }
   
   .activity-heading{

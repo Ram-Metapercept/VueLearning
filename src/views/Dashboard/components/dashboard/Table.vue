@@ -1,103 +1,156 @@
 <template>
-  <a-table :columns="columns" :data-source="data" class="components-table-demo-nested">
-    <template #bodyCell="{ column }">
-      <template v-if="column.key === 'operation'">
-        <a>Publish</a>
+  <a-button class="editable-add-btn" style="margin-bottom: 8px" @click="handleAdd">Add</a-button>
+  <a-table bordered :data-source="dataSource" :columns="columns">
+    <template #bodyCell="{ column, text, record }">
+      <template v-if="column.dataIndex === 'name'">
+        <div class="editable-cell">
+          <div v-if="editableData[record.key]" class="editable-cell-input-wrapper">
+            <a-input v-model:value="editableData[record.key].name" @pressEnter="save(record.key)" />
+            <check-outlined class="editable-cell-icon-check" @click="save(record.key)" />
+          </div>
+          <div v-else class="editable-cell-text-wrapper">
+            {{ text || ' ' }}
+            <edit-outlined class="editable-cell-icon" @click="edit(record.key)" />
+          </div>
+        </div>
       </template>
-    </template>
-    <template #expandedRowRender>
-      <a-table :columns="innerColumns" :data-source="innerData" :pagination="false">
-        <template #bodyCell="{ column }">
-          <template v-if="column.key === 'state'">
-            <span>
-              <a-badge status="success" />
-              Finished
-            </span>
-          </template>
-          <template v-else-if="column.key === 'operation'">
-            <span class="table-operation">
-              <a>Pause</a>
-              <a>Stop</a>
-              <a-dropdown>
-                <template #overlay>
-                  <a-menu>
-                    <a-menu-item>Action 1</a-menu-item>
-                    <a-menu-item>Action 2</a-menu-item>
-                  </a-menu>
-                </template>
-                <a>
-                  More
-                  <down-outlined />
-                </a>
-              </a-dropdown>
-            </span>
-          </template>
-        </template>
-      </a-table>
+      <template v-else-if="column.dataIndex === 'operation'">
+        <a-popconfirm
+          v-if="dataSource.length"
+          title="Sure to delete?"
+          @confirm="onDelete(record.key)"
+        >
+          <a>Delete</a>
+        </a-popconfirm>
+      </template>
     </template>
   </a-table>
 </template>
 <script lang="ts" setup>
-import { DownOutlined } from '@ant-design/icons-vue';
-const columns = [
-  { title: 'Name', dataIndex: 'name', key: 'name' },
-  { title: 'Platform', dataIndex: 'platform', key: 'platform' },
-  { title: 'Version', dataIndex: 'version', key: 'version' },
-  { title: 'Upgraded', dataIndex: 'upgradeNum', key: 'upgradeNum' },
-  { title: 'Creator', dataIndex: 'creator', key: 'creator' },
-  { title: 'Date', dataIndex: 'createdAt', key: 'createdAt' },
-  { title: 'Action', key: 'operation' },
-];
+import { computed, reactive, ref } from 'vue';
+import type { Ref, UnwrapRef } from 'vue';
+import { CheckOutlined, EditOutlined } from '@ant-design/icons-vue';
+import { cloneDeep } from 'lodash-es';
 
 interface DataItem {
-  key: number;
+  key: string;
   name: string;
-  platform: string;
-  version: string;
-  upgradeNum: number;
-  creator: string;
-  createdAt: string;
+  age: number;
+  address: string;
 }
 
-const data: DataItem[] = [];
-for (let i = 0; i < 3; ++i) {
-  data.push({
-    key: i,
-    name: `Screem ${i + 1}`,
-    platform: 'iOS',
-    version: '10.3.4.5654',
-    upgradeNum: 500,
-    creator: 'Jack',
-    createdAt: '2014-12-24 23:12:00',
-  });
-}
-
-const innerColumns = [
-  { title: 'Date', dataIndex: 'date', key: 'date' },
-  { title: 'Name', dataIndex: 'name', key: 'name' },
-  { title: 'Status', key: 'state' },
-  { title: 'Upgrade Status', dataIndex: 'upgradeNum', key: 'upgradeNum' },
+const columns = [
   {
-    title: 'Action',
+    title: 'Name',
+    dataIndex: 'name',
+    width: '30%',
+  },
+  {
+    title: 'Age',
+    dataIndex: 'age',
+  },
+  {
+    title: 'Address',
+    dataIndex: 'address',
+  },
+  {
+    title: 'Operation',
     dataIndex: 'operation',
-    key: 'operation',
   },
 ];
+const dataSource: Ref<DataItem[]> = ref([
+{
+  key: '0',
+  name: 'Edward King 0',
+  age: 32,
+  address: 'London, Park Lane no. 0',
+},
+{
+  key: '1',
+  name: 'Edward King 1',
+  age: 32,
+  address: 'London, Park Lane no. 1',
+},
+{
+  key: '2',
+  name: 'Edward King 2',
+  age: 32,
+  address: 'London, Park Lane no. 2',
+},
+// Add more data items here with unique keys
+{
+  key: '3',
+  name: 'Edward King 3',
+  age: 32,
+  address: 'London, Park Lane no. 3',
+},
 
-interface innerDataItem {
-  key: number;
-  date: string;
-  name: string;
-  upgradeNum: string;
-}
 
-const innerData: innerDataItem[] = [];
-for (let i = 0; i < 3; ++i) {
-  innerData.push({
-    key: i,
-    date: '2014-12-24 23:12:00',
-    name: `This is production name ${i + 1}`,
-    upgradeNum: 'Upgraded: 56',
-  });
-}
+]);
+
+const count = computed(() => dataSource.value.length + 1);
+const editableData: UnwrapRef<Record<string, DataItem>> = reactive({});
+
+const edit = (key: string) => {
+  editableData[key] = cloneDeep(dataSource.value.filter(item => key === item.key)[0]);
+};
+const save = (key: string) => {
+  Object.assign(dataSource.value.filter(item => key === item.key)[0], editableData[key]);
+  delete editableData[key];
+};
+
+const onDelete = (key: string) => {
+  dataSource.value = dataSource.value.filter(item => item.key !== key);
+};
+const handleAdd = () => {
+  const newData = {
+    key: `${count.value}`,
+    name: `Edward King ${count.value}`,
+    age: 32,
+    address: `London, Park Lane no. ${count.value}`,
+  };
+  dataSource.value.push(newData);
+};
 </script>
+<style lang="less" scoped>
+.editable-cell {
+  position: relative;
+  .editable-cell-input-wrapper,
+  .editable-cell-text-wrapper {
+    padding-right: 24px;
+  }
+
+  .editable-cell-text-wrapper {
+    padding: 5px 24px 5px 5px;
+  }
+
+  .editable-cell-icon,
+  .editable-cell-icon-check {
+    position: absolute;
+    right: 0;
+    width: 20px;
+    cursor: pointer;
+  }
+
+  .editable-cell-icon {
+    margin-top: 4px;
+    display: none;
+  }
+
+  .editable-cell-icon-check {
+    line-height: 28px;
+  }
+
+  .editable-cell-icon:hover,
+  .editable-cell-icon-check:hover {
+    color: #108ee9;
+  }
+
+  .editable-add-btn {
+    margin-bottom: 8px;
+  }
+}
+.editable-cell:hover .editable-cell-icon {
+  display: inline-block;
+}
+</style>

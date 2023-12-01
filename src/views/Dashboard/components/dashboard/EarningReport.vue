@@ -1,142 +1,148 @@
 <template>
+  <div class="parentDonut">
     <div class="earnings-card">
       <div class="chart-container">
-        <canvas ref="weeklyChart"></canvas>
-        <div class="chart-label">
-          <span>
-        <strong>Weekly Earnings</strong>
-        <p>$2,523</p>
-      </span>
-      <span>
-        <strong>Weekly Revenue</strong>
-        <p>$6,523</p>
-      </span>
-    </div>
-      </div>
-      <div class="chart-container">
         <canvas ref="monthlyChart"></canvas>
-        <div class="chart-label">
-          <span>
-          <strong>Monthly Earnings</strong>
-          <p>$5,523</p>
+      </div>
+      <div class="chart-label">
+        <span>
+          <div
+           
+          >
+          <div class="title-with-value">
+          <div class="title-with-hints">
+            <span
+              style="
+              display: inline-block;
+                border-radius: 50%;
+                width: 3px;
+                height: 3px;
+                background-color: cyan;
+                padding: 5px;
+              "
+            ></span>
+            <strong class="title-on-Earning-Report">Monthly Revenue </strong>
+          </div>
+          <p >$5,523</p>
+        </div>
+     
+        </div>
         </span>
         <span>
-          <strong>Monthly Revenue</strong>
-          <p>$9,523</p>
+          <div
+           
+          >
+          <div class="title-with-value">
+          <div class="title-with-hints">
+            <span
+              style="
+              display: inline-block;
+                border-radius: 50%;
+                width: 3px;
+                height: 3px;
+                background-color: #FF6384;
+                padding: 5px;
+              "
+            ></span>
+            <strong class="title-on-Earning-Report">Monthly Earning </strong>
+          </div>
+          <p >$5,523</p>
+        </div>
+     
+        </div>
         </span>
       </div>
-      </div>
-
     </div>
-  </template>
-  
-  <script>
-import { onMounted } from 'vue';
-import Chart from 'chart.js/auto';  
-  export default {
-    mounted() {
-      this.renderCharts();
-    },
-    methods: {
-      renderCharts() {
-        // Weekly Earnings Chart
-        const weeklyCtx = this.$refs.weeklyChart.getContext('2d');
-        new Chart(weeklyCtx, {
-          type: 'doughnut',
-          data: {
-            labels: ['weekly Earnings', 'weekly Revenue'],
-            datasets: [{
-              data: [4523, 10000 - 4523], // Adjust the remaining value accordingly
-              backgroundColor: ['#36A2EB', 'cyan'],
-            }],
-          },
-          options: {
-      cutout: '60%', 
-    },
-        });
-  
+  </div>
+</template>
 
-        const monthlyCtx = this.$refs.monthlyChart.getContext('2d');
-        new Chart(monthlyCtx, {
-          type: 'doughnut',
-          data: {
-            labels: ['Monthly Earnings', 'Monthly Revenue'],
-            datasets: [{
-              data: [21235, (30000 - 21235)], 
-              backgroundColor: ['#FF6384', 'cyan'],
-            }],
-          },
-          options: {
-      cutout: '60%', 
+<script>
+import Chart from "chart.js/auto";
+export default {
+  mounted() {
+    this.renderCharts();
+  },
+  methods: {
+    renderCharts() {
+      const monthlyCtx = this.$refs.monthlyChart.getContext("2d");
+      new Chart(monthlyCtx, {
+        type: "doughnut",
+        data: {
+          datasets: [
+            {
+              data: [21235, 30000 - 21235],
+              backgroundColor: ["#FF6384", "cyan"],
+            },
+          ],
+        },
+        options: {
+          cutout: "80%",
+        },
+      });
     },
-        });
-      },
-    },
-  };
-  </script>
-  
-  <style scoped>
+  },
+};
+</script>
 
-  
-  .chart-container {
+<style scoped>
+.chart-container {
+  display: block;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
 
-    display: flex;
-    align-items: center;
-justify-content: flex-start !important;
-    margin-top: 30px;
-    max-width: 25vh;
-    max-height: 25vh;
-    text-align: center;
-  }
+  max-width: 20vh;
+  max-height: 20vh;
+  text-align: center;
+}
+.title-with-value{
+  text-align: center;
+}
 
- 
-  
+.chart-label {
+  gap: 10px;
+
+  display: flex;
+  justify-content: space-between !important;
+  flex-direction: row;
+
+  font-size: 20px;
+  margin-top: 1rem;
+}
+.full-title{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.earnings-text {
+  text-align: center;
+}
+.title-on-Earning-Report{
+  line-height: 1;
+}
+@media (max-width: 768px) {
   .chart-label {
-display: flex;
-justify-content: flex-end !important;
-flex-direction: column;
-
-    font-size: 20px;
-    margin-top:1rem;
-  }
+    gap: 0px;
   
-  .earnings-text {
-    text-align: center;
+   
   }
-  @media (max-width: 1200px) {
-.earnings-card {
-
+  .chart-label {
+    flex-direction: column;
+    display: flex;
+    margin-top: 0.5rem;
+    justify-content: flex-start !important;
+    font-size: 15px;
+  }
+  .earnings-card {
     flex-direction: column !important;
-        display: block;
-        margin: auto;
-        justify-content: center !important;
-      }
+    display: flex;
+
+    justify-content: flex-start !important;
   }
-
-
-  @media (max-width: 1050px) {
-    .earnings-card {
- 
-        flex-direction: row !important;
-            display: flex;
-            margin: auto;
-            justify-content: center !important;
-          }
-      }
-      @media (max-width: 768px) {
-        .chart-label {
-
-
-          font-size: 15px;
-          margin-top:1rem;
-        }
-        .earnings-card {
-     
-            flex-direction: column !important;
-                display: flex;
-      
-                justify-content: flex-start !important;
-              }
-          }
-  </style>
-  
+}
+.parentDonut {
+  display: flex;
+  justify-content: center !important;
+  align-items: center;
+}
+</style>

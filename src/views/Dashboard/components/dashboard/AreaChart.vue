@@ -3,6 +3,7 @@
     <apexchart
       :type="chartOptions.chart.type"
       :width="chartOptions.chart.width"
+      :height="chartOptions.chart.height"
       :options="chartOptions"
       :series="series"
     ></apexchart>
@@ -31,7 +32,8 @@ export default {
       chartOptions: {
         chart: {
           type: 'area',
-          width: '100%', // Set width as a percentage
+          width: '100%',
+          height:'150%' // Set width as a percentage
         },
         labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
      

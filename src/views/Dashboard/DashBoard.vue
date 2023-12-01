@@ -123,7 +123,7 @@
           </span>
         </div>
       </a-layout-header>
-      <a-layout-content :style="{ marginLeft: '150px' }" class="layout-content">
+      <a-layout-content :style="{ marginLeft: '120px' }" class="layout-content">
         <UserDashBoard />
       </a-layout-content>
       <div style="text-align: center" class="footer">
@@ -217,7 +217,7 @@ a.active router-link-exact-active {
   justify-content: flex-end;
   margin: 15px 30px 0px 30px;
 }
-@media only screen and (max-width: 912px) {
+@media only screen and (max-width: 991px) {
   .layout-content {
 
     margin-left: 0 !important;
