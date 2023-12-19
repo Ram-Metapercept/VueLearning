@@ -26,7 +26,6 @@
     },
   };
   </script>
-  
   <style scoped>
   .activity-card:not(span) {
     display: flex;
@@ -42,8 +41,8 @@
   
   .activity-item {
 
-    padding: 15px;
-    width: 300px;
+    padding: 15px 0px 15px 15px;
+   
     transition: transform 0.3s ease;
     position: relative;
     

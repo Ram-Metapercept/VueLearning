@@ -2,20 +2,23 @@
   <div class="section">
     <div class="section1"><center><img src="../../assets/Login.png" alt=""/></center> </div>
     <div class="section2">
-      <Center>
+      <center>
         <h1>Welcome Back</h1>
-      </Center>
+      </center>
       <div class="login-form">
         <h2>Login</h2>
-        <form >
+        <form @submit.prevent="onSubmit">
           <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" id="username"/>
+            <label for="username">Username or Email</label>
+            <input type="text" id="username" v-model="formState.username" />
+            <div class="error-message" v-if="usernameError">{{ usernameError }}</div>
           </div>
           <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" id="password"  />
+            <input type="password" id="password" v-model="formState.password" />
+            <div class="error-message" v-if="passwordError">{{ passwordError }}</div>
           </div>
+          <div class="error-message" v-if="errorMessage">{{ errorMessage }}</div>
           <div class="options">
             <div class="link1">
               <p>
@@ -26,30 +29,27 @@
               </p>
             </div>
             <div class="link2">
-              <a href="#" @click="">Forget password </a>
+              <a href="#" @click="forgotPassword">Forget password </a>
             </div>
           </div>
-          <RouterLink to="/dashboard">
-            <button type="submit" class="login-button">Login</button>
-          </RouterLink>
+          <button type="submit" class="login-button" >Login</button>
         </form>
       </div>
     </div>
-
   </div>
 </template>
+
 <script lang="ts">
-import { reactive, computed } from "vue";
+import { reactive } from "vue";
 import { RouterLink } from "vue-router";
 
 interface FormState {
   username: string;
   password: string;
-  remember: boolean;
 }
 
 export default {
-  name: 'LoginForm', // Add a name to your component
+  name: 'LoginForm',
   components: {
     RouterLink,
   },
@@ -58,16 +58,41 @@ export default {
       formState: reactive<FormState>({
         username: "",
         password: "",
-        remember: true,
       }),
+      usernameError: "",
+      passwordError: "", 
+      errorMessage: "", 
     };
   },
   methods: {
-    onFinish(values: any) {
-      console.log("Success:", values);
-    },
-    onFinishFailed(errorInfo: any) {
-      console.log("Failed:", errorInfo);
+   onSubmit() {
+  const { username, password } = this.formState;
+
+  // Reset error messages
+  this.usernameError = "";
+  this.passwordError = "";
+  this.errorMessage = "";
+
+  if (!username || username.length === 0) {
+    this.usernameError = "Username is required";
+  } else if (username !== "admin@gmail.com") {
+    this.usernameError = "Username is incorrect";
+  }
+
+  if (!password || password.length === 0) {
+    this.passwordError = "Password is required";
+  } else if (password !== "admin@123") {
+    this.passwordError = "Password is incorrect";
+  }
+
+  if (!this.usernameError && !this.passwordError) {
+ 
+    this.$router.push("/dashboard");
+  }
+}
+   , forgotPassword() {
+
+      console.log("Forgot password clicked");
     },
   },
   computed: {
@@ -77,7 +102,6 @@ export default {
   },
 };
 </script>
-
 
 <style scoped>
 .login-form {
@@ -105,8 +129,7 @@ export default {
 
 .section1 {
   width: 50% !important;
-  /* width: 100%; */
-  /* background-color: red; */
+
   align-items: center !important;
 display: flex !important;
 
@@ -130,6 +153,10 @@ h2 {
 
 label {
   display: block;
+}
+.error-message {
+  color: red;
+  margin-top: 10px;
 }
 
 input {

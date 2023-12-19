@@ -33,7 +33,7 @@ export default {
         chart: {
           type: 'area',
           width: '100%',
-          height:'150%' // Set width as a percentage
+          height:'200%' // Set width as a percentage
         },
         labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
      

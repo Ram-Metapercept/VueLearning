@@ -6,50 +6,48 @@
       </div>
       <div class="chart-label">
         <span>
-          <div
-           
-          >
-          <div class="title-with-value">
-          <div class="title-with-hints">
-            <span
-              style="
-              display: inline-block;
-                border-radius: 50%;
-                width: 3px;
-                height: 3px;
-                background-color: cyan;
-                padding: 5px;
-              "
-            ></span>
-            <strong class="title-on-Earning-Report">Monthly Revenue </strong>
+          <div>
+            <div class="title-with-value">
+              <div class="title-with-hints">
+                <span
+                  style="
+                    display: inline-block;
+                    border-radius: 50%;
+                    width: 3px;
+                    height: 3px;
+                    background-color: #6574cd;
+                    padding: 5px;
+                  "
+                ></span>
+                <strong class="title-on-Earning-Report"
+                  >Monthly Revenue
+                </strong>
+              </div>
+              <p>$21235</p>
+            </div>
           </div>
-          <p >$5,523</p>
-        </div>
-     
-        </div>
         </span>
         <span>
-          <div
-           
-          >
-          <div class="title-with-value">
-          <div class="title-with-hints">
-            <span
-              style="
-              display: inline-block;
-                border-radius: 50%;
-                width: 3px;
-                height: 3px;
-                background-color: #FF6384;
-                padding: 5px;
-              "
-            ></span>
-            <strong class="title-on-Earning-Report">Monthly Earning </strong>
+          <div>
+            <div class="title-with-value">
+              <div class="title-with-hints">
+                <span
+                  style="
+                    display: inline-block;
+                    border-radius: 50%;
+                    width: 3px;
+                    height: 3px;
+                    background-color: #3c366b;
+                    padding: 5px;
+                  "
+                ></span>
+                <strong class="title-on-Earning-Report"
+                  >Monthly Earning
+                </strong>
+              </div>
+              <p>$8735</p>
+            </div>
           </div>
-          <p >$5,523</p>
-        </div>
-     
-        </div>
         </span>
       </div>
     </div>
@@ -70,8 +68,13 @@ export default {
         data: {
           datasets: [
             {
-              data: [21235, 30000 - 21235],
-              backgroundColor: ["#FF6384", "cyan"],
+              data: [21235, 30000 - 21235,7654],
+              backgroundColor: ["#6574cd", "#4299e1","#3c366b"],
+              hoverBackgroundColor: [
+                "#5a67d8",
+                "#3490dc",
+                "#191e38",
+          ],
             },
           ],
         },
@@ -95,7 +98,7 @@ export default {
   max-height: 20vh;
   text-align: center;
 }
-.title-with-value{
+.title-with-value {
   text-align: center;
 }
 
@@ -106,10 +109,10 @@ export default {
   justify-content: space-between !important;
   flex-direction: row;
 
-  font-size: 20px;
-  margin-top: 1rem;
+  font-size: 16px;
+  margin-top: 0.8rem;
 }
-.full-title{
+.full-title {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -117,14 +120,12 @@ export default {
 .earnings-text {
   text-align: center;
 }
-.title-on-Earning-Report{
+.title-on-Earning-Report {
   line-height: 1;
 }
 @media (max-width: 768px) {
   .chart-label {
     gap: 0px;
-  
-   
   }
   .chart-label {
     flex-direction: column;

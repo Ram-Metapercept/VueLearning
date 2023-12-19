@@ -30,7 +30,7 @@
             </div>
           </a-menu-item>
         </RouterLink>
-        <RouterLink active-class="active" to="#">
+        <RouterLink active-class="active" to="/organisation">
           <a-menu-item key="2" class="alignment1">
             <div class="space">
               <span class="material-symbols-outlined"> corporate_fare </span>
@@ -38,7 +38,7 @@
             </div>
           </a-menu-item>
         </RouterLink>
-        <RouterLink active-class="active" to="#">
+        <RouterLink active-class="active" to="/subscription">
           <a-menu-item key="3" class="alignment1">
             <div class="space">
               <span class="material-symbols-outlined"> subscriptions </span>
@@ -47,17 +47,17 @@
             </div>
           </a-menu-item>
         </RouterLink>
-        <RouterLink active-class="active" to="/">
+        <RouterLink active-class="active" to="/profile">
           <a-menu-item key="4" class="alignment1">
             <div class="space">
-              <span class="material-symbols-outlined" style="fontSize:20px">
+              <span class="material-symbols-outlined" style="fontsize: 20px">
                 person
-                </span>
+              </span>
               <span class="nav-text">Profile</span>
             </div>
           </a-menu-item>
         </RouterLink>
-        <RouterLink active-class="active" to="#">
+        <RouterLink active-class="active" to="/message">
           <a-menu-item key="5" class="alignment1">
             <div class="space">
               <span class="material-symbols-outlined"> chat_bubble </span>
@@ -65,7 +65,7 @@
             </div>
           </a-menu-item>
         </RouterLink>
-        <RouterLink active-class="active" to="#">
+        <RouterLink active-class="active" to="/analytics">
           <a-menu-item key="6" class="alignment1">
             <div class="space">
               <span class="material-symbols-outlined"> bar_chart </span>
@@ -73,7 +73,7 @@
             </div>
           </a-menu-item>
         </RouterLink>
-        <RouterLink active-class="active" to="#">
+        <RouterLink active-class="active" to="/fileManager">
           <a-menu-item key="7" class="alignment1">
             <div class="space">
               <span class="material-symbols-outlined"> folder </span>
@@ -81,7 +81,7 @@
             </div>
           </a-menu-item>
         </RouterLink>
-        <RouterLink active-class="active" to="#">
+        <RouterLink active-class="active" to="/order">
           <a-menu-item key="8" class="alignment1">
             <div class="space">
               <span class="material-symbols-outlined"> shopping_cart </span>
@@ -89,7 +89,7 @@
             </div>
           </a-menu-item>
         </RouterLink>
-        <RouterLink active-class="active" to="#">
+        <RouterLink active-class="active" to="/saved">
           <a-menu-item key="9" class="alignment1">
             <div class="space">
               <span class="material-symbols-outlined"> favorite </span>
@@ -97,12 +97,10 @@
             </div>
           </a-menu-item>
         </RouterLink>
-        <RouterLink active-class="active" to="#">
+        <RouterLink active-class="active" to="/setting">
           <a-menu-item key="10" class="alignment1">
             <div class="space">
-              <span class="material-symbols-outlined">
-                settings
-                </span>
+              <span class="material-symbols-outlined"> settings </span>
               <span class="nav-text">Setting</span>
             </div>
           </a-menu-item>
@@ -192,8 +190,6 @@ const selectedKeys = ref<string[]>(["1"]);
   margin-left: 80px !important;
 }
 
-
-
 a.active router-link-exact-active {
   background-color: transparent !important;
 }
@@ -219,11 +215,9 @@ a.active router-link-exact-active {
 }
 @media only screen and (max-width: 991px) {
   .layout-content {
-
     margin-left: 0 !important;
     display: flex;
     flex-direction: column !important;
-
   }
   .layOutMargin {
     margin-left: 0 !important;

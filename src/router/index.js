@@ -19,9 +19,11 @@
 import { createRouter, createWebHistory } from "vue-router";
 import AccountRouter from "../views/Account/router/route.account";
 import DashBoardRouter from "../views/Dashboard/router/route.dashboard"
+import ComingSoonRouter from "../views/ComingSoon/router/route.comingSoon"
 const allRoutes = [
   ...AccountRouter,
- ...DashBoardRouter
+ ...DashBoardRouter,
+  ...ComingSoonRouter
 
 ];
 

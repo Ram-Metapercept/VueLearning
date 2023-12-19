@@ -1,7 +1,7 @@
 <template>
   <div>
-    <!-- <SignUpForm /> -->
-    <router-view /> <!-- Use lowercase 'router-view' -->
+
+    <router-view /> 
   </div>
 </template>
 

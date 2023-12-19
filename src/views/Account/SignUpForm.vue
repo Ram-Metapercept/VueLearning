@@ -128,11 +128,8 @@ button:hover {
   background-size: cover;
 }
 .part1 img{
-
-  
-    width:60%;
-  
-}
+ width:60%;
+  }
 
 .part2 {
   width: 50% !important;
